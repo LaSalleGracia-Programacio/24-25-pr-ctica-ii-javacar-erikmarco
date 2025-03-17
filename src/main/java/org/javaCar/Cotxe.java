@@ -1,7 +1,9 @@
 package org.javaCar;
 
-public class Cotxe extends Vehicle implements Llogable {
+public class Cotxe extends Vehicle implements Llogable{
     private int numPlaces;
+
+
 
     public Cotxe(String matricula, String marca, String model, double preuBase, int numPlaces, Motor motor, Roda roda) {
         this.matricula = matricula;
@@ -12,4 +14,10 @@ public class Cotxe extends Vehicle implements Llogable {
         this.roda = roda;
         this.numPlaces = numPlaces;
     }
+
+    @Override
+    public double calcularPreuCotxe(int dies, double preuBase) {
+        return preuBase*dies;
+    }
 }
+
