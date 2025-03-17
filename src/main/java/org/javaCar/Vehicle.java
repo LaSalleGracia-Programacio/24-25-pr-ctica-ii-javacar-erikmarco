@@ -1,4 +1,4 @@
-package org.JavaCar;
+package org.javaCar;
 
 public abstract class Vehicle implements Llogable {
     //Override de la interfície Llogable
@@ -8,13 +8,13 @@ public abstract class Vehicle implements Llogable {
     }
 
     //Declaració d'atributs
-    private String matricula;
-    private String marca;
-    private String model;
-    private double preuBase;
-    private Motor motor;
-    private Roda roda;
-    private char distintiuAmbiental;
+    String matricula;
+    String marca;
+    String model;
+    double preuBase;
+    Motor motor;
+    Roda roda;
+    char distintiuAmbiental;
 
     //Getters i setters
     public String getMatricula() {
@@ -47,6 +47,8 @@ public abstract class Vehicle implements Llogable {
 
 
     //Declaració mètode per a formar el distintiu ambiental. Cal actualitzar amb override a les subclasses
-    public void assignarDistintiuAmbiental(Motor motor, )
+    public void assignarDistintiuAmbiental(Motor motor) {
+        return;
+    }
 
 }

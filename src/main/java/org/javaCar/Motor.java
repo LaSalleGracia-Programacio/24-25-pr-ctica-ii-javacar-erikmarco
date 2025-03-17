@@ -1,4 +1,4 @@
-package org.JavaCar;
+package org.javaCar;
 
 public class Motor {
     //Declaració de variables
