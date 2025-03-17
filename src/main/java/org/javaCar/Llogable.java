@@ -4,4 +4,6 @@ public interface Llogable {
     public double calcularPreuCotxe(int dies, double preuBase);
 
     double calcularPreuMoto(int dies, double preuBase, int cilindrada);
+
+    double calcularPreuFurgonet(int dies, double preuBase, int capacitiatCarga);
 }
