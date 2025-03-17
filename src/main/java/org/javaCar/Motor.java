@@ -20,7 +20,7 @@ public class Motor {
         this.potencia = potencia;
     }
     public void setTipus(char tipus) {
-        this.tipus = tipus;
+        tipus = tipus;
     }
     public int getPotencia() {
         return potencia;

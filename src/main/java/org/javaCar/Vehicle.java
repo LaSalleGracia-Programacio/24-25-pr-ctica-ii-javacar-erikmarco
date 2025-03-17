@@ -46,9 +46,32 @@ public abstract class Vehicle implements Llogable {
     }
 
 
-    //Declaració mètode per a formar el distintiu ambiental. Cal actualitzar amb override a les subclasses
-    public void assignarDistintiuAmbiental(Motor motor) {
-        return;
+    //Declaració mètode per a formar el distintiu ambiental.
+    public void assignarDistintiuAmbiental(Motor motor){
+        switch (motor.getTipus()) {
+            case 'g', 'd':
+                if (Math.random() < 0.3) {
+                    this.distintiuAmbiental = 'B';
+                } else {
+                    this.distintiuAmbiental = 'C';
+                }
+                break;
+            case 'h':
+                if (Math.random() < 0.2) {
+                    this.distintiuAmbiental = '0';
+                } else {
+                    this.distintiuAmbiental = 'E';
+                }
+                break;
+            case 'p', 'e':
+                this.distintiuAmbiental = '0';
+                break;
+            case 'n', 'l':
+                this.distintiuAmbiental = 'E';
+                break;
+            default:
+                throw new InvalidMotorTypeException("Tipus de motor invalid.");
+        }
     }
 
 }
