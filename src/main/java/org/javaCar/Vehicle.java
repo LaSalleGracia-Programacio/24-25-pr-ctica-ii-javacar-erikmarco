@@ -1,5 +1,10 @@
 package org.javaCar;
 
+import java.text.DecimalFormat;
+
+/**
+ * Aquesta classe és una superclasse de tots els tipus de vehicles oferits a carJava.
+ */
 public abstract class Vehicle implements Llogable {
     //Override de la interfície Llogable
     @Override
@@ -20,8 +25,10 @@ public abstract class Vehicle implements Llogable {
     String model;
     double preuBase;
     Motor motor;
-    Roda roda;
+    Roda[] rodes;
     char distintiuAmbiental;
+    public static final DecimalFormat df = new DecimalFormat("0.00");
+
 
     //Getters i setters
     public String getMatricula() {
@@ -54,6 +61,12 @@ public abstract class Vehicle implements Llogable {
 
 
     //Declaració mètode per a formar el distintiu ambiental.
+
+    /**
+     * Aquest mètode assigna el distintiu ambiental del vehicle
+     * @param motor El motor del vehicle
+     * @throws InvalidMotorTypeException aquesta excepció es tira si el tipus de combustible que fa servir el motor no és vàlid
+     */
     public void assignarDistintiuAmbiental(Motor motor) throws InvalidMotorTypeException {
         switch (motor.getTipus()) {
             case 'g', 'd':
