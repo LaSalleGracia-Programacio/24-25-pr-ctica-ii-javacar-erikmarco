@@ -17,14 +17,49 @@ public class Furgoneta extends Vehicle implements Llogable{
         return dies*preuBase;
     }
 
+    /**
+     * Getter de la capacitat de càrrega d'una furgoneta
+     * @return la capacitat de càrrega de la furgoneta
+     */
     public int getCapacitatCarga(){
         return capacitatCarga;
 
     }
+
+    /**
+     * Setter de la capacitat de càrrega d'una furgoneta. Només s'hauria de fer servir si la furgoneta s'ha declarat incorrectament.
+     * @param capacitatCarga la capacitat de càrrega de la furgoneta
+     */
     public void setCapacitatCarga(int capacitatCarga){
         this.capacitatCarga = capacitatCarga;
     }
 
+    /**
+     * Constructor amb paràmetres d'una furgoneta
+     * @param matricula
+     * @param marca
+     * @param model
+     * @param preuBase
+     * @param capacitatCarga
+     * @param motor
+     * @param rodes
+     */
+    public Furgoneta(String matricula, String marca, String model, double preuBase, int capacitatCarga, Motor motor, Roda[] rodes){
+        this.matricula = matricula;
+        this.marca = marca;
+        this.model = model;
+        this.preuBase = preuBase;
+        this.capacitatCarga = capacitatCarga;
+        this.motor = motor;
+        this.rodes = rodes;
+    }
+
+    /**
+     * Constructor per defecte d'una furgoneta
+     */
+    public Furgoneta() {
+        this(null, null, null, 0, 0, new Motor(), new Roda[0]);
+    }
 }
 
 

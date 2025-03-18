@@ -1,9 +1,10 @@
 package org.javaCar;
-
+import java.lang.StringBuilder;
 /**
  * Aquesta classe és una superclasse de tots els tipus de vehicles oferits a carJava.
  */
 public abstract class Vehicle implements Llogable {
+    StringBuilder sb = new StringBuilder();
     //Override de la interfície Llogable
     @Override
     public double calcularPreuCotxe (int dies, double preuBase) {
@@ -86,7 +87,7 @@ public abstract class Vehicle implements Llogable {
     }
 
     /**
-     * Setter del preu base d'un vehicle. Només s'hauria de fer servir en cas que s'hagi declarat el vehicle malament.
+     * Setter del preu base d'un vehicle..
      * @param preuBase El nou preu base d'un vehicle.
      */
     public void setPreuBase(double preuBase) {
@@ -99,6 +100,24 @@ public abstract class Vehicle implements Llogable {
      */
     public char getDistintiuAmbiental() {
         return distintiuAmbiental;
+    }
+
+    public String getMotor() {
+        return motor.toString();
+    }
+    public void setMotor(Motor motor) {
+        this.motor = motor;
+    }
+    public String getRodes() {
+        sb.append("{\n");
+        for (int i = 0; i < rodes.length; i++) {
+            sb.append("roda ").append(i).append(": ").append(rodes[i].toString());
+            if (i != rodes.length - 1) {
+                sb.append(",\n");
+            }
+        }
+        sb.append("\n}");
+        return sb.toString();
     }
 
 
