@@ -1,7 +1,5 @@
 package org.javaCar;
 
-import java.text.DecimalFormat;
-
 /**
  * Aquesta classe és una superclasse de tots els tipus de vehicles oferits a carJava.
  */
@@ -27,34 +25,78 @@ public abstract class Vehicle implements Llogable {
     Motor motor;
     Roda[] rodes;
     char distintiuAmbiental;
-    public static final DecimalFormat df = new DecimalFormat("0.00");
 
 
     //Getters i setters
+
+    /**
+     * Getter de la matrícula d'un vehicle
+     * @return El String corresponent a la matrícula del vehicle
+     */
     public String getMatricula() {
         return matricula;
     }
+
+    /**
+     * Setter de la matrícula d'un vehicle. Només s'hauria de fer servir en cas que s'hagi declarat el vehicle malament.
+     * @param matricula La nova matrícula del vehicle
+     */
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
+
+    /**
+     * Getter de la marca d'un vehicle.
+     * @return La marca del vehicle
+     */
     public String getMarca() {
         return marca;
     }
+
+    /**
+     * Setter de la marca d'un vehicle. Només s'hauria de fer servir en cas que s'hagi declarat el vehicle malament.
+     * @param marca La nova marca d'un vehicle
+     */
     public void setMarca(String marca) {
         this.marca = marca;
     }
+
+    /**
+     * Getter del model d'un vehicle.
+     * @return El model d'un vehicle.
+     */
     public String getModel() {
         return model;
     }
+
+    /**
+     * Setter del model d'un vehicle. Només s'hauria de fer servir en cas que s'hagi declarat el vehicle malament.
+     * @param model El nou model d'un vehicle.
+     */
     public void setModel(String model) {
         this.model = model;
     }
+
+    /**
+     * Getter del preu base d'un vehicle.
+     * @return El preu base d'un vehicle.
+     */
     public double getPreuBase() {
         return preuBase;
     }
+
+    /**
+     * Setter del preu base d'un vehicle. Només s'hauria de fer servir en cas que s'hagi declarat el vehicle malament.
+     * @param preuBase El nou preu base d'un vehicle.
+     */
     public void setPreuBase(double preuBase) {
         this.preuBase = preuBase;
     }
+
+    /**
+     * Getter del distintiu ambiental d'un vehicle.
+     * @return El distintiu ambiental d'un vehicle.
+     */
     public char getDistintiuAmbiental() {
         return distintiuAmbiental;
     }

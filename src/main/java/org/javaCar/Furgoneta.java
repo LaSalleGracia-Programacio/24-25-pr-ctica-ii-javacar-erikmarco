@@ -1,5 +1,4 @@
 package org.javaCar;
-import java.text.DecimalFormat;
 
 public class Furgoneta extends Vehicle implements Llogable{
     private int capacitatCarga;
