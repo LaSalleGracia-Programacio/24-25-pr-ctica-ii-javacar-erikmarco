@@ -57,8 +57,10 @@ public abstract class Vehicle implements Llogable {
     public void assignarDistintiuAmbiental(Motor motor) throws InvalidMotorTypeException {
         switch (motor.getTipus()) {
             case 'g', 'd':
-                if (Math.random() < 0.3) {
+                if (Math.random() < 0.2) {
                     this.distintiuAmbiental = 'B';
+                } else if (Math.random() > 0.95) {
+                    this.distintiuAmbiental = (char)0;
                 } else {
                     this.distintiuAmbiental = 'C';
                 }
