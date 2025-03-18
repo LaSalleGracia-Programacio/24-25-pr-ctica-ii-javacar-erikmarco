@@ -55,7 +55,7 @@ public class Roda {
     }
 
     /**
-     * COnstructo per defecte d'una roda
+     * Constructor per defecte d'una roda
      */
     public Roda() {
         this(null, 0);
