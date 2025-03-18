@@ -3,10 +3,17 @@ package org.javaCar;
 public abstract class Vehicle implements Llogable {
     //Override de la interfície Llogable
     @Override
-    public double calcularPreu(int dies, double preuBase) {
-        return preuBase*dies;
+    public double calcularPreuCotxe (int dies, double preuBase) {
+        return 0;
     }
-
+    @Override
+    public double calcularPreuMoto (int dies, double preuBase, int cilindrada) {
+        return 0;
+    }
+    @Override
+    public double calcularPreuFurgoneta (int dies, double preuBase, int capacitiatCarga) {
+        return 0;
+    }
     //Declaració d'atributs
     String matricula;
     String marca;
@@ -47,7 +54,7 @@ public abstract class Vehicle implements Llogable {
 
 
     //Declaració mètode per a formar el distintiu ambiental.
-    public void assignarDistintiuAmbiental(Motor motor){
+    public void assignarDistintiuAmbiental(Motor motor) throws InvalidMotorTypeException {
         switch (motor.getTipus()) {
             case 'g', 'd':
                 if (Math.random() < 0.3) {

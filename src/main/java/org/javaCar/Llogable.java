@@ -3,7 +3,7 @@ package org.javaCar;
 public interface Llogable {
     public double calcularPreuCotxe(int dies, double preuBase);
 
-    double calcularPreuMoto(int dies, double preuBase, int cilindrada);
+    public double calcularPreuMoto(int dies, double preuBase, int cilindrada);
 
-    double calcularPreuFurgonet(int dies, double preuBase, int capacitiatCarga);
+    public double calcularPreuFurgoneta(int dies, double preuBase, int capacitiatCarga);
 }

@@ -1,7 +1,7 @@
 package org.javaCar;
 
 public class Furgoneta extends Vehicle implements Llogable{
-    public int capacitatCarga;
+    private int capacitatCarga;
 
     @Override
     public double calcularPreuFurgoneta(int dies, double preuBase, int capacitatCarga){
@@ -18,6 +18,7 @@ public class Furgoneta extends Vehicle implements Llogable{
     public void setCapacitatCarga(int capacitatCarga){
         this.capacitatCarga = capacitatCarga;
     }
+
 }
 
 
