@@ -57,6 +57,18 @@ public class Motor {
         this.tipus = tipus;
     }
 
+    public Motor (String tipus, int potencia) {
+       switch (tipus) {
+           case "Gasolina" -> this.tipus = 'g';
+           case "Diesel" -> this.tipus = 'd';
+           case "Hibrid" -> this.tipus = 'h';
+           case "Hibrid Endollable" -> this.tipus = 'p';
+           case "GLP" -> this.tipus = 'l';
+           case "Gas Natural" -> this.tipus = 'n';
+           case "Electric" -> this.tipus = 'e';
+       }
+    }
+
     /**
      * Constructor per defecte del motor.
      */
