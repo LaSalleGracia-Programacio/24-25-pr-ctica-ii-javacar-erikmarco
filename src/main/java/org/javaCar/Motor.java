@@ -49,8 +49,8 @@ public class Motor {
 
     /**
      * Constructor amb paràmetres del motor.
-     * @param potencia
-     * @param tipus
+     * @param potencia Potència del motor
+     * @param tipus Tipus de motor
      */
     public Motor(int potencia, char tipus) {
         this.potencia = potencia;
@@ -59,9 +59,9 @@ public class Motor {
 
     public Motor (String tipus, int potencia) {
        switch (tipus) {
-           case "Gasolina" -> this.tipus = 'g';
-           case "Diesel" -> this.tipus = 'd';
-           case "Hibrid" -> this.tipus = 'h';
+           case "Gasolina" -> this(potencia,'g');
+           case "Diesel" -> this(potencia, 'd');
+           case "Hibrid" -> this(potencia, 'h');
            case "Hibrid Endollable" -> this.tipus = 'p';
            case "GLP" -> this.tipus = 'l';
            case "Gas Natural" -> this.tipus = 'n';
