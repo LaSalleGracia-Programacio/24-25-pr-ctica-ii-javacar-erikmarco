@@ -44,7 +44,7 @@ public class Main {
             System.out.println("Persona registrada correctament!");
 
         } catch (IOException e) {
-            System.out.println("Error escrivint al fitxer: " + e.getMessage());
+            System.err.println("Error escrivint al fitxer: " + e.getMessage());
         }
     }
 
