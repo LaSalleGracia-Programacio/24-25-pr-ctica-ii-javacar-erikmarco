@@ -28,7 +28,7 @@ public class Motor {
      * @param tipus El nou tipus de combustible del motor.
      */
     public void setTipus(char tipus) {
-        tipus = tipus;
+        this.tipus = tipus;
     }
 
     /**
