@@ -44,13 +44,13 @@ public class Moto extends Vehicle implements Llogable {
      * @param rodes
      */
     public Moto(String matricula, String marca, String model, double preuBase, int cilindrada, Motor motor, Roda[] rodes){
-        this.matricula = matricula;
-        this.marca = marca;
-        this.model = model;
-        this.preuBase = preuBase;
+        this.setMatricula(matricula);
+        this.setMarca(marca);
+        this.setModel(model);
+        this.setPreuBase(preuBase);
         this.cilindrada = cilindrada;
-        this.motor = motor;
-        this.rodes = rodes;
+        this.setMotor(motor);
+        this.setRodes = (rodes);
     }
 
     /**
