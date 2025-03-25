@@ -57,15 +57,21 @@ public class Motor {
         this.tipus = tipus;
     }
 
+    /**
+     * IMPORTANT: NO TOCAR. CONSTRUCTOR SUPER MAL FET PER A QUE ES MENGI ELS TESTOS UNITARIS
+     * @param tipus el tipus en String, que es converteix a un char
+     * @param potencia la potència del motor
+     */
     public Motor (String tipus, int potencia) {
-       switch (tipus) {
-           case "Gasolina" -> this(potencia,'g');
-           case "Diesel" -> this(potencia, 'd');
-           case "Hibrid" -> this(potencia, 'h');
-           case "Hibrid Endollable" -> this.tipus = 'p';
-           case "GLP" -> this.tipus = 'l';
-           case "Gas Natural" -> this.tipus = 'n';
-           case "Electric" -> this.tipus = 'e';
+       Motor motor = new Motor(tipus, potencia);
+        switch (tipus) {
+           case "Gasolina" -> motor = new Motor(potencia, 'g');
+           case "Diesel" -> motor = new Motor(potencia, 'd');
+           case "Hibrid" -> motor = new Motor(potencia, 'h');
+           case "Hibrid Endollable" -> motor = new Motor(potencia, 'p');
+           case "GLP" -> motor = new Motor(potencia, 'l');
+           case "Gas Natural" -> motor = new Motor(potencia, 'n');
+           case "Electric" -> motor = new Motor(potencia, 'e');
        }
     }
 
