@@ -8,6 +8,10 @@ import java.time.Instant;
 public abstract class Vehicle implements Llogable {
     StringBuilder sb = new StringBuilder();
     Random rand = new Random();
+
+    public Vehicle(String matricula, String marca, String model, double preuBase) {
+    }
+
     //Override de la interfície Llogable
     @Override
     public double calcularPreuCotxe (int dies, double preuBase) {

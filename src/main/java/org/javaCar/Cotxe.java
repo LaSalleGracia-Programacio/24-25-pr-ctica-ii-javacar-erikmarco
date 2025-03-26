@@ -38,7 +38,8 @@ public class Cotxe extends Vehicle implements Llogable{
      * @param rodes
      */
     public Cotxe(String matricula, String marca, String model, double preuBase, int places, Motor motor, Roda[] rodes) {
-        super(matricula, marca, model, preuBase, places);
+        super(matricula, marca, model, preuBase);
+        this.numPlaces = places;
         this.setMotor(motor); // motor can be null
         this.setRodes(rodes); // rodes can be null
     }
