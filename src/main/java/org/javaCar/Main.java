@@ -99,13 +99,34 @@ public class Main {
                                         case 1:
                                             System.out.println("Benvingut al buscador de vehicles disponibles.");
                                             System.out.println("1. Veure la llista de vehicles");
-                                            System.out.println("2. Ordenar/Filtrar vehicles");
+                                            System.out.println("2. Filtrar vehicles");
                                             System.out.print("Opció: ");
                                             boolean opcioBuscar = ErrorChecker.checkIntPos(2) == 1;
                                             if (opcioBuscar) LlistaVehicles.mostrarLlista();
                                             else {
-                                                LlistaVehicles.ordenarVehicles();
-                                                LlistaVehicles.mostrarLlista();
+                                                    boolean tornarFiltrar = false;
+                                                    while (!tornarFiltrar) {
+                                                        System.out.println("\n--- MENÚ DE FILTRATGE DE VEHICLES ---");
+                                                        System.out.println("1. Filtrar per potència");
+                                                        System.out.println("2. Filtrar per nombre de places");
+                                                        System.out.println("3. Filtrar per tipus de vehicle");
+                                                        System.out.println("4. Filtrar per distintiu ambiental");
+                                                        System.out.println("5. Tornar al menú de l'usuari");
+                                                        System.out.print("Opció: ");
+
+                                                        int opcioFiltre = ErrorChecker.checkIntPos(5);
+
+                                                        switch (opcioFiltre) {
+                                                            case 1 -> LlistaVehicles.filtrarPotencia();
+                                                            case 2 -> LlistaVehicles.filtrarPersones();
+                                                            case 3 -> LlistaVehicles.filtrarTipusVehicle();
+                                                            case 4 -> LlistaVehicles.filtrarDistintiuAmbiental();
+                                                            case 5 -> tornarFiltrar = true;
+                                                            default -> System.out.println("Opció no vàlida.");
+                                                        }
+                                                    }
+                                                    break;
+
                                             }
                                         break;
                                         case 2:

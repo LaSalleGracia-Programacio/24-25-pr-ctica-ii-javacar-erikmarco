@@ -178,7 +178,7 @@ public class LlistaVehicles implements ErrorChecker {
     }
 
 
-    public void filtrar() {
+    public static void filtrarPotencia() {
         System.out.println("Potencia - 1");
         byte opt = 1;
         switch (opt) {
@@ -201,6 +201,91 @@ public class LlistaVehicles implements ErrorChecker {
             }
         }
     }
+
+    public static void filtrarPersones() {
+        System.out.println("Filtrar per nombre de places:");
+        System.out.println("1. Igual o més");
+        System.out.println("2. Menys");
+        boolean minMax = ErrorChecker.checkIntPos(2) == 1;
+
+        System.out.print("Introdueix el nombre de places: ");
+        int persones = ErrorChecker.checkIntPos(Integer.MAX_VALUE);
+
+        for (Vehicle v : vehicles) {
+            int places = v.getNumPlaces();
+
+            if (places != -1) {
+                if (minMax && places >= persones) {
+                    System.out.println(v);
+                } else if (!minMax && places < persones) {
+                    System.out.println(v);
+                }
+            }
+        }
+    }
+
+    public static void filtrarTipusVehicle() {
+        System.out.println("Filtrar per tipus de vehicle:");
+        System.out.println("1. Cotxe");
+        System.out.println("2. Moto");
+        System.out.println("3. Furgoneta");
+        int opcio = ErrorChecker.checkIntPos(3);
+
+        String tipus = switch (opcio) {
+            case 1 -> "Cotxe";
+            case 2 -> "Moto";
+            case 3 -> "Furgoneta";
+            default -> "";
+        };
+
+        System.out.println("Mostrant vehicles de tipus: " + tipus);
+
+        for (Vehicle v : vehicles) {
+            if (v.getClass().getSimpleName().equals(tipus)) {
+                System.out.println(v);
+            }
+        }
+    }
+
+    public static void filtrarDistintiuAmbiental() {
+        System.out.println("Filtrar per distintiu ambiental:");
+        System.out.println("1. NULL");
+        System.out.println("2. B");
+        System.out.println("3. C");
+        System.out.println("4. ECO");
+        System.out.println("5. ZERO");
+        System.out.print("Opció: ");
+
+        int opcio = ErrorChecker.checkIntPos(5);
+        DistintiusAmbientals distintiuSeleccionat;
+
+        switch (opcio) {
+            case 1 -> distintiuSeleccionat = DistintiusAmbientals.NULL;
+            case 2 -> distintiuSeleccionat = DistintiusAmbientals.B;
+            case 3 -> distintiuSeleccionat = DistintiusAmbientals.C;
+            case 4 -> distintiuSeleccionat = DistintiusAmbientals.ECO;
+            case 5 -> distintiuSeleccionat = DistintiusAmbientals.ZERO;
+            default -> {
+                System.out.println("Opció no vàlida.");
+                return;
+            }
+        }
+
+        System.out.println("Vehicles amb distintiu " + distintiuSeleccionat + ":");
+        int comptador = 0;
+
+        for (Vehicle v : vehicles) {
+            if (v.getDistintiuAmbiental() == distintiuSeleccionat) {
+                System.out.println(v);
+                comptador++;
+            }
+        }
+
+        if (comptador == 0) {
+            System.out.println("No s'han trobat vehicles amb aquest distintiu.");
+        }
+    }
+
 
     public void eliminarVehicle(String matricula) {
         vehicles.removeIf(vehicle -> vehicle.getMatricula().equals(matricula));
