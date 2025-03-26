@@ -153,6 +153,14 @@ public abstract class Vehicle implements Llogable {
         return sb.toString();
     }
 
+    public Vehicle(String matricula, String marca, String model, double preuBase, Motor motor, Roda[] rodes) {
+        this.matricula = matricula;
+        this.marca = marca;
+        this.model = model;
+        this.preuBase = preuBase;
+        this.motor = motor;
+        this.rodes = rodes;
+    }
 
 
     //Declaració mètode per a formar el distintiu ambiental.
