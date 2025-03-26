@@ -13,8 +13,16 @@ public abstract class Vehicle implements Llogable {
         this.marca = marca;
         this.model = model;
         this.preuBase = preuBase;
-        this.motor = motor != null ? motor : null;  // Default Motor if null
-        this.rodes = rodes != null ? rodes : null;  // Default Rodes if null
+        try {
+            this.motor = motor;
+        } catch (Exception e) {
+            motor = null;
+        }
+        try {
+            this.rodes = rodes;
+        } catch (Exception e) {
+            rodes = null;
+        }
     }
 
     // Override methods from Llogable interface
