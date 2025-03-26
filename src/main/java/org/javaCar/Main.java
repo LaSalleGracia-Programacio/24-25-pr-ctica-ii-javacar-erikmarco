@@ -105,9 +105,24 @@ public class Main {
 
                                 switch (opcioUsuari) {
                                     case "1":
-                                        System.out.println("Benvingut al buscador");
-                                        System.out.println();
+                                        System.out.println("Benvingut al buscador de vehicles disponibles.");
+                                        System.out.println("1. Veure la llista de vehicles");
+                                        System.out.println("2. Ordenar/Filtrar vehicles");
+                                        System.out.print("Opció: ");
+                                        String opcioBuscar = scanner.nextLine();
+
+                                        switch (opcioBuscar) {
+                                            case "1":
+                                                LlistaVehicles.veureLlistaVehicles();
+                                                break;
+                                            case "2":
+
+                                                break;
+                                            default:
+                                                System.out.println("Opció no vàlida.");
+                                        }
                                         break;
+
                                     case "2":
                                         System.out.println("Funció per llogar vehicle (pendent d'implementar)");
                                         break;
