@@ -126,18 +126,26 @@ public abstract class Vehicle implements Llogable {
         this.motor = motor;
     }
     public String getRodes() {
+        if (rodes == null || rodes.length == 0) {
+            return "{}"; // Return empty braces if no wheels are set
+        }
+
+        sb.setLength(0); // Reset the StringBuilder
         sb.append("{");
+
         for (int i = 0; i < rodes.length; i++) {
-            sb.append("roda ").append(i).append(": ").append(rodes[i].toString());
+            if (rodes[i] != null) {
+                sb.append("roda ").append(i).append(": ").append(rodes[i].toString());
+            } else {
+                sb.append("roda ").append(i).append(": NULL");
+            }
+
             if (i != rodes.length - 1) {
-                sb.append("}");
+                sb.append(", ");
             }
         }
         sb.append("}");
         return sb.toString();
-    }
-    public void setRodes(Roda[] rodes) {
-        this.rodes = rodes;
     }
 
 
@@ -205,4 +213,7 @@ public abstract class Vehicle implements Llogable {
         }
     }
 
+    protected void setRodes(Roda[] rodes) {
+        this.rodes = rodes;
+    }
 }

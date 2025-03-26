@@ -77,15 +77,18 @@ public class LlistaVehicles implements ErrorChecker {
                     String marca = scan.nextLine();
                     System.out.println("Introdueix el diametre de la roda");
                     int diametre = ErrorChecker.checkIntPos(Byte.MAX_VALUE);
-                    for (Roda roda : rodes) {
-                        roda = new Roda(marca, diametre);
+                    for (int i = 0; i < rodes.length; i++) {
+                        rodes[i] = new Roda(marca, diametre);
                     }
                 } else {
-                    for (Roda roda : rodes) {
+                    for (int i = 0; i < rodes.length; i++) {
+                        System.out.println("Marca de la roda " + (i + 1) + ": ");
                         String marca = scan.nextLine();
+                        System.out.println("Diàmetre de la roda " + (i + 1) + ": ");
                         int diametre = ErrorChecker.checkIntPos(Byte.MAX_VALUE);
-                        roda = new Roda(marca, diametre);
+                        rodes[i] = new Roda(marca, diametre);
                     }
+
                 }
                 System.out.print("Introdueix el preu base: ");
                 double preuBase = ErrorChecker.checkDoublePos(Double.MAX_VALUE);

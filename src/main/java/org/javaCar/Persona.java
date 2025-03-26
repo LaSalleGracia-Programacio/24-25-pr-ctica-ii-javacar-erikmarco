@@ -71,11 +71,11 @@ public abstract class Persona {
             if (tipus.equalsIgnoreCase("admin")) {
                 System.out.print("Nivell d'accés: ");
                 String nivellAcces = scanner.nextLine();
-                persona = new Administrador(nom, cognom, dni, correu, contrasenya, nivellAcces);
+                persona = new Administrador(nom,cognom,dni,correu,contrasenya,nivellAcces);
             } else {
                 System.out.print("Telèfon: ");
                 String telefon = scanner.nextLine();
-                persona = new Usuari(nom, cognom, dni, correu, contrasenya, telefon);
+                persona = new Usuari(nom,cognom,dni,correu,contrasenya,telefon);
             }
 
             writer.write(persona.toCSV() + "\n");

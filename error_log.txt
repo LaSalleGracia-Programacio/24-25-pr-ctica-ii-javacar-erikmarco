@@ -1,0 +1,5 @@
+org.javaCar.InvalidMotorTypeException: Tipus de motor invalid.
+	at org.javaCar.Vehicle.assignarDistintiuAmbiental(Vehicle.java:212)
+	at org.javaCar.LlistaVehicles.afegirVehicle(LlistaVehicles.java:101)
+	at org.javaCar.Main.main(Main.java:138)
+

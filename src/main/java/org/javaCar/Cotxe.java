@@ -43,7 +43,7 @@ public class Cotxe extends Vehicle implements Llogable{
         setModel(model);
         setPreuBase(preuBase);
         setMotor(motor);
-        setRodes(rodes);
+        super.setRodes(rodes);
         this.numPlaces = numPlaces;
         setDataAddicio(Instant.now());
     }
