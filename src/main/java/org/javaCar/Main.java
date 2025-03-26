@@ -108,20 +108,24 @@ public class Main {
                                                     while (!tornarFiltrar) {
                                                         System.out.println("\n--- MENÚ DE FILTRATGE DE VEHICLES ---");
                                                         System.out.println("1. Filtrar per potència");
-                                                        System.out.println("2. Filtrar per nombre de places");
+                                                        System.out.println("2. Filtrar per nombre de places (només cotxes)");
                                                         System.out.println("3. Filtrar per tipus de vehicle");
                                                         System.out.println("4. Filtrar per distintiu ambiental");
-                                                        System.out.println("5. Tornar al menú de l'usuari");
+                                                        System.out.println("5. Filtrar per cilindrada (només motos)");
+                                                        System.out.println("6. Filtrar per capacitat de càrrega (només furgonetes)");
+                                                        System.out.println("7. Tornar al menú de l'usuari");
                                                         System.out.print("Opció: ");
 
-                                                        int opcioFiltre = ErrorChecker.checkIntPos(5);
+                                                        int opcioFiltre = ErrorChecker.checkIntPos(7);
 
                                                         switch (opcioFiltre) {
                                                             case 1 -> LlistaVehicles.filtrarPotencia();
                                                             case 2 -> LlistaVehicles.filtrarPersones();
                                                             case 3 -> LlistaVehicles.filtrarTipusVehicle();
                                                             case 4 -> LlistaVehicles.filtrarDistintiuAmbiental();
-                                                            case 5 -> tornarFiltrar = true;
+                                                            case 5 -> LlistaVehicles.filtrarCilindrada();
+                                                            case 6 -> LlistaVehicles.filtrarCarrega();
+                                                            case 7 -> tornarFiltrar = true;
                                                             default -> System.out.println("Opció no vàlida.");
                                                         }
                                                     }
