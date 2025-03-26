@@ -330,6 +330,55 @@ public class LlistaVehicles implements ErrorChecker {
         }
     }
 
+    public static void modificarVehicle() {
+        System.out.print("Introdueix la matrícula del vehicle a modificar: ");
+        String matricula = scan.nextLine();
+
+        Vehicle vehicle = null;
+        for (Vehicle v : vehicles) {
+            if (v.getMatricula().equalsIgnoreCase(matricula)) {
+                vehicle = v;
+                break;
+            }
+        }
+
+        if (vehicle == null) {
+            System.out.println("Vehicle no trobat.");
+            return;
+        }
+
+        System.out.println("Vehicle trobat: " + vehicle);
+
+        // Modificar potència
+        System.out.print("Introdueix nova potència (actual: " + vehicle.getPotencia() + "): ");
+        int novaPotencia = ErrorChecker.checkIntPos(Integer.MAX_VALUE);
+        vehicle.getMotor().setPotencia(novaPotencia);
+
+        // Modificar preu base
+        System.out.print("Introdueix nou preu base (actual: " + vehicle.getPreuBase() + "): ");
+        double nouPreu = ErrorChecker.checkDoublePos(Double.MAX_VALUE);
+        vehicle.setPreuBase(nouPreu);
+
+        // Modificar marca
+        System.out.print("Introdueix nova marca (actual: " + vehicle.getMarca() + "): ");
+        String novaMarca = scan.nextLine();
+        vehicle.setMarca(novaMarca);
+
+        // Modificar model
+        System.out.print("Introdueix nou model (actual: " + vehicle.getModel() + "): ");
+        String nouModel = scan.nextLine();
+        vehicle.setModel(nouModel);
+
+        // Reassignar distintiu ambiental
+        try {
+            vehicle.assignarDistintiuAmbiental(vehicle.getMotorPure());
+        } catch (Exception e) {
+            System.out.println("Error en reassignar distintiu ambiental.");
+            ErrorLogger.logError(e);
+        }
+
+        System.out.println("Vehicle modificat correctament.");
+    }
 
 
 
