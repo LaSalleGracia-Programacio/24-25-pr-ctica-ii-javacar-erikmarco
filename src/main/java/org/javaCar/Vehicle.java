@@ -141,7 +141,60 @@ public abstract class Vehicle implements Llogable {
 
     // Method to assign the environmental badge
     public void assignarDistintiuAmbiental(Motor motor) throws InvalidMotorTypeException {
-        // (Existing method logic remains unchanged)
+        motor.setEmissionsCO(rand.nextDouble(3.5));
+        motor.setEmissionsTHC(rand.nextDouble(0.3));
+        motor.setEmissionsNMHC(rand.nextDouble(0.1));
+        motor.setEmissionsNOx(rand.nextDouble(0.75));
+        motor.setEmissionsHC_NOx(rand.nextDouble(1.5));
+        motor.setEmissionsPM(rand.nextDouble(0.25));
+        motor.setEmissionsPN((byte) rand.nextInt(9));
+        switch (motor.getTipus()) {
+            case 'g':
+                motor.setAnyConstruccio(rand.nextInt(1900, 2025));
+                if (motor.getAnyConstruccio() < 2001) this.distintiuAmbiental = DistintiusAmbientals.NULL;
+                else {
+                    if (motor.getAnyConstruccio() < 2006) {
+                        if (motor.getEmissionsCO() > 2.3 || motor.getEmissionsTHC() > 0.2 || motor.getEmissionsNOx() > 0.15)
+                            this.distintiuAmbiental = DistintiusAmbientals.NULL;
+                        else distintiuAmbiental = DistintiusAmbientals.B;
+                    } else {
+                        if (motor.getEmissionsCO() > 1.0 || motor.getEmissionsTHC() > 0.1 || motor.getEmissionsNOx() > 0.08) this.distintiuAmbiental = DistintiusAmbientals.B;
+                        else distintiuAmbiental = DistintiusAmbientals.C;
+                    }
+                }
+                break;
+            case 'd':
+                motor.setAnyConstruccio(rand.nextInt(1900, 2025));
+                if (motor.getAnyConstruccio() < 2006) this.distintiuAmbiental = DistintiusAmbientals.NULL;
+                else {
+                    if (motor.getAnyConstruccio() < 2014) {
+                        if (motor.getEmissionsCO() > 0.5 || motor.getEmissionsNOx() > 0.25 || motor.getEmissionsHC_NOx() > 0.3 || motor.getEmissionsPM() > 0.025)
+                            this.distintiuAmbiental = DistintiusAmbientals.NULL;
+                        else distintiuAmbiental = DistintiusAmbientals.B;
+                    } else {
+                        if (motor.getEmissionsCO() > 0.5 || motor.getEmissionsNOx() > 0.08 || motor.getEmissionsHC_NOx() > 0.17 || motor.getEmissionsPM() > 0.0045 || motor.getEmissionsPN() > 6) this.distintiuAmbiental = DistintiusAmbientals.B;
+                        else distintiuAmbiental = DistintiusAmbientals.C;
+                    }
+                }
+                break;
+            case 'p':
+                motor.setRangHibrid((byte) rand.nextInt(127));
+                if (motor.getRangHibrid() > 40) {
+                    this.distintiuAmbiental = DistintiusAmbientals.ZERO;
+                } else {
+                    this.distintiuAmbiental = DistintiusAmbientals.ECO;
+                }
+                break;
+            case 'e':
+                this.distintiuAmbiental = DistintiusAmbientals.ZERO;
+                break;
+            case 'h', 'n', 'l':
+                this.distintiuAmbiental = DistintiusAmbientals.ECO;
+                break;
+            default:
+                throw new InvalidMotorTypeException("Tipus de motor invalid.");
+        }
+
     }
 
     protected void setRodes(Roda[] rodes) {
