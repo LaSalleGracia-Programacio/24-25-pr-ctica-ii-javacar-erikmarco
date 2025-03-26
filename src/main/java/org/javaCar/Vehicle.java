@@ -125,6 +125,11 @@ public abstract class Vehicle implements Llogable {
     public void setMotor(Motor motor) {
         this.motor = motor;
     }
+
+    public Roda[] getRodesMatriu() {
+        return rodes;
+    }
+
     public String getRodes() {
         if (rodes == null || rodes.length == 0) {
             return "{}"; // Return empty braces if no wheels are set

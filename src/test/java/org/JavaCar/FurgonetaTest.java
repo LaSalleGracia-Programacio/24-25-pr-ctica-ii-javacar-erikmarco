@@ -1,5 +1,7 @@
 package org.JavaCar;
 
+import org.javaCar.Furgoneta;
+import org.javaCar.Moto;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -21,13 +23,13 @@ public class FurgonetaTest {
     @Test
     public void testCalculPreuFurgonetaPetita() {
         Furgoneta furgoneta = new Furgoneta("3344MNO", "Mercedes", "Vito", 50, 900, null, null);
-        assertEquals(150, furgoneta.calcularPreu(3), 0.01); // 50 * 3 = 150
+        assertEquals(150, furgoneta.calcularPreuFurgoneta(3, furgoneta.getPreuBase(), furgoneta.getCapacitatCarga()), 0.01); // 50 * 3 = 150
     }
 
     @Test
     public void testCalculPreuFurgonetaGran() {
         Furgoneta furgoneta = new Furgoneta("5566PQR", "Iveco", "Daily", 55, 1200, null, null);
-        assertEquals(195, furgoneta.calcularPreu(3), 0.01); // 55 * 3 + 10 * 3 = 195
+        assertEquals(195, furgoneta.calcularPreuFurgoneta(3, furgoneta.getPreuBase(), furgoneta.getCapacitatCarga()), 0.01); // 55 * 3 + 10 * 3 = 195
     }
 
     @Test

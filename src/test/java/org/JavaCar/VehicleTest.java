@@ -1,5 +1,9 @@
 package org.JavaCar;
 
+import org.javaCar.Cotxe;
+import org.javaCar.Motor;
+import org.javaCar.Roda;
+import org.javaCar.Vehicle;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -32,13 +36,13 @@ public class VehicleTest {
         assertEquals("Corolla", vehicle.getModel());
         assertEquals(30, vehicle.getPreuBase(), 0.01);
         assertEquals(motor, vehicle.getMotor());
-        assertArrayEquals(rodes, vehicle.getRodes());
+        assertArrayEquals(rodes, vehicle.getRodesMatriu());
     }
 
     @Test
     public void testProvaUsVehicle() {
         Vehicle vehicle = new Cotxe("2222XYZ", "Renault", "Clio", 32, 5, null, null);
-        double preuLloguer = vehicle.calcularPreu(3); // Ha d'usar la implementació de Cotxe
+        double preuLloguer = vehicle.calcularPreuCotxe(3, vehicle.getPreuBase()); // Ha d'usar la implementació de Cotxe
 
         assertEquals(96, preuLloguer, 0.01);
     }
