@@ -1,54 +1,64 @@
 package org.javaCar;
 
 import java.text.DecimalFormat;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
-import org.javaCar.*;
 
 public class Main {
+
     public static final DecimalFormat euros = new DecimalFormat("0.00 €");
+
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        boolean sortir = false;
 
-    Scanner scanner = new Scanner(System.in);
+        System.out.println("Benvingut a JavaCar!");
 
-        try (FileWriter writer = new FileWriter("persones.csv", true)) {
-            System.out.println("Quin tipus de persona vols registrar? (admin/user): ");
-            String tipus = scanner.nextLine();
+        while (!sortir) {
+            System.out.println(" MENÚ PRINCIPAL ");
+            System.out.println("1. Registrar-se");
+            System.out.println("2. Iniciar sessió");
+            System.out.println("3. Sortir");
+            System.out.print("Opció: ");
+            String opcio = scanner.nextLine();
 
-            System.out.print("Nom: ");
-            String nom = scanner.nextLine();
+            switch (opcio) {
+                case "1":
+                    Persona.registrarPersona(scanner);
+                    break;
 
-            System.out.print("Cognom: ");
-            String cognom = scanner.nextLine();
+                case "2":
+                    System.out.print("Nom: ");
+                    String nom = scanner.nextLine();
 
-            System.out.print("DNI: ");
-            String dni = scanner.nextLine();
+                    System.out.print("Contrasenya: ");
+                    String contrasenya = scanner.nextLine();
 
-            System.out.print("Email: ");
-            String email = scanner.nextLine();
+                    Persona persona = Login.iniciarSessio(nom, contrasenya);
 
-            System.out.print("Contrasenya: ");
-            String contrasenya = scanner.nextLine();
+                    if (persona != null) {
+                        System.out.println("\nSessió iniciada correctament. Benvingut/da, " + persona.obtenirNom() + "!");
 
-            Persona persona;
+                        if (persona instanceof Administrador) {
+                            System.out.println("Ets un administrador amb nivell d'accés: " + ((Administrador) persona).obtenirNivellAcces());
+                        } else if (persona instanceof Usuari) {
+                            System.out.println("Ets un usuari amb telèfon: " + ((Usuari) persona).obtenirTelefon());
+                        }
 
-            if (tipus.equalsIgnoreCase("admin")) {
-                System.out.print("Nivell d'accés: ");
-                String nivellAcces = scanner.nextLine();
-                persona = new Administrador(nom, cognom, dni, email, contrasenya, nivellAcces);
-            } else {
-                System.out.print("Telèfon: ");
-                String telefon = scanner.nextLine();
-                persona = new Usuari(nom, cognom, dni, email, contrasenya, telefon);
+                    } else {
+                        System.out.println("Nom o contrasenya incorrectes.");
+                    }
+                    break;
+
+                case "3":
+                    System.out.println("Sortint del programa...");
+                    sortir = true;
+                    break;
+
+                default:
+                    System.out.println("Opció no vàlida. Torna-ho a intentar.");
             }
-
-            writer.write(persona.toCSV() + "\n");
-            System.out.println("Persona registrada correctament!");
-
-        } catch (IOException e) {
-            System.err.println("Error escrivint al fitxer: " + e.getMessage());
         }
-    }
 
+        scanner.close();
     }
+}

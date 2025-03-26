@@ -33,7 +33,6 @@ public class Login {
                 }
             }
 
-            System.out.println("Nom o contrasenya incorrectes.");
         } catch (IOException e) {
             System.out.println("Error en llegir el fitxer: " + e.getMessage());
         }
