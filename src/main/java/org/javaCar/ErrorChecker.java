@@ -2,7 +2,7 @@ package org.javaCar;
 import java.util.Scanner;
 public interface ErrorChecker {
     Scanner scan = new Scanner(System.in);
-    public default int checkIntPos(int max) {
+    public static int checkIntPos(int max) {
         while (true) {
             if (!scan.hasNextInt()) {
                 System.out.println("ERROR: Has de introduir un valor entre 0 i" + max);
@@ -34,7 +34,7 @@ public interface ErrorChecker {
             return n;
         }
     }
-    public default double checkDoublePos (double max) {
+    public static double checkDoublePos(double max) {
         while (true) {
             if (!scan.hasNextDouble()) {
                 System.out.println("ERROR: Has de introduir un valor entre 0 i " + max);

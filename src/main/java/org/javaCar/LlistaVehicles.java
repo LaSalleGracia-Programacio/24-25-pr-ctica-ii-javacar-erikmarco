@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.Comparator;
 
 public class LlistaVehicles implements ErrorChecker {
-    public List<Vehicle> vehicles = new ArrayList<>();
+    public static List<Vehicle> vehicles = new ArrayList<>();
 
-    public void ordenarVehicles() {
-        int opcio = checkIntPos(4);
+    public static void ordenarVehicles() {
+        int opcio = ErrorChecker.checkIntPos(4);
         System.out.print("Ordenant vehicles per");
-        boolean asc = checkIntPos(2) == 1;
+        boolean asc = ErrorChecker.checkIntPos(2) == 1;
         Comparator<Vehicle> ordenar = Comparator.comparing(Vehicle::getMatricula);
         switch (opcio) {
             case 1 -> {
@@ -48,27 +48,27 @@ public class LlistaVehicles implements ErrorChecker {
             vehicles.sort(ordenar);
         }
     }
-    public void mostrarLlista() {
+    public static void mostrarLlista() {
         for (Vehicle v : vehicles) {
             System.out.println(v.toString());
         }
     }
 
-    public void afegirVehicle() {
-        int opcio = checkIntPos(3);
+    public static void afegirVehicle() {
+        int opcio = ErrorChecker.checkIntPos(3);
         switch (opcio) {
             case 1 -> {
                 String matricula = scan.nextLine();
-                int potencia = checkIntPos(Integer.MAX_VALUE);
+                int potencia = ErrorChecker.checkIntPos(Integer.MAX_VALUE);
                 String combustible = scan.nextLine();
                 Motor motor = new Motor(combustible, potencia);
-                int persones = checkIntPos(9);
-                int nRodes = checkIntPos(10);
+                int persones = ErrorChecker.checkIntPos(9);
+                int nRodes = ErrorChecker.checkIntPos(10);
                 Roda[] rodes = new Roda[nRodes];
-                boolean rodesIguals = checkIntPos(2) == 1;
+                boolean rodesIguals = ErrorChecker.checkIntPos(2) == 1;
                 if (rodesIguals) {
                     String marca = scan.nextLine();
-                    int diametre = checkIntPos(Byte.MAX_VALUE);
+                    int diametre = ErrorChecker.checkIntPos(Byte.MAX_VALUE);
                     for (Roda roda : rodes) {
                         roda.setMarca(marca);
                         roda.setDiametre(diametre);
@@ -76,12 +76,12 @@ public class LlistaVehicles implements ErrorChecker {
                 } else {
                     for (Roda roda : rodes) {
                         String marca = scan.nextLine();
-                        int diametre = checkIntPos(Byte.MAX_VALUE);
+                        int diametre = ErrorChecker.checkIntPos(Byte.MAX_VALUE);
                         roda.setMarca(marca);
                         roda.setDiametre(diametre);
                     }
                 }
-                double preuBase = checkDoublePos(Double.MAX_VALUE);
+                double preuBase = ErrorChecker.checkDoublePos(Double.MAX_VALUE);
                 String marca = scan.nextLine();
                 String model = scan.nextLine();
                 vehicles.add(new Cotxe(matricula, marca, model, preuBase, persones, motor, rodes));
@@ -94,16 +94,16 @@ public class LlistaVehicles implements ErrorChecker {
             }
             case 2 -> {
                 String matricula = scan.nextLine();
-                int potencia = checkIntPos(Integer.MAX_VALUE);
+                int potencia = ErrorChecker.checkIntPos(Integer.MAX_VALUE);
                 String combustible = scan.nextLine();
                 Motor motor = new Motor(combustible, potencia);
-                int cilindrada = checkIntPos(2000);
-                int nRodes = checkIntPos(10);
+                int cilindrada = ErrorChecker.checkIntPos(2000);
+                int nRodes = ErrorChecker.checkIntPos(10);
                 Roda[] rodes = new Roda[nRodes];
-                boolean rodesIguals = checkIntPos(2) == 1;
+                boolean rodesIguals = ErrorChecker.checkIntPos(2) == 1;
                 if (rodesIguals) {
                     String marca = scan.nextLine();
-                    int diametre = checkIntPos(Byte.MAX_VALUE);
+                    int diametre = ErrorChecker.checkIntPos(Byte.MAX_VALUE);
                     for (Roda roda : rodes) {
                         roda.setMarca(marca);
                         roda.setDiametre(diametre);
@@ -111,12 +111,12 @@ public class LlistaVehicles implements ErrorChecker {
                 } else {
                     for (Roda roda : rodes) {
                         String marca = scan.nextLine();
-                        int diametre = checkIntPos(Byte.MAX_VALUE);
+                        int diametre = ErrorChecker.checkIntPos(Byte.MAX_VALUE);
                         roda.setMarca(marca);
                         roda.setDiametre(diametre);
                     }
                 }
-                double preuBase = checkDoublePos(Double.MAX_VALUE);
+                double preuBase = ErrorChecker.checkDoublePos(Double.MAX_VALUE);
                 String marca = scan.nextLine();
                 String model = scan.nextLine();
                 vehicles.add(new Moto(matricula, marca, model, preuBase, cilindrada, motor, rodes));
@@ -129,16 +129,16 @@ public class LlistaVehicles implements ErrorChecker {
             }
             default -> {
                 String matricula = scan.nextLine();
-                int potencia = checkIntPos(Integer.MAX_VALUE);
+                int potencia = ErrorChecker.checkIntPos(Integer.MAX_VALUE);
                 String combustible = scan.nextLine();
                 Motor motor = new Motor(combustible, potencia);
-                int capacitatCarrega = checkIntPos(3500);
-                int nRodes = checkIntPos(10);
+                int capacitatCarrega = ErrorChecker.checkIntPos(3500);
+                int nRodes = ErrorChecker.checkIntPos(10);
                 Roda[] rodes = new Roda[nRodes];
-                boolean rodesIguals = checkIntPos(2) == 1;
+                boolean rodesIguals = ErrorChecker.checkIntPos(2) == 1;
                 if (rodesIguals) {
                     String marca = scan.nextLine();
-                    int diametre = checkIntPos(Byte.MAX_VALUE);
+                    int diametre = ErrorChecker.checkIntPos(Byte.MAX_VALUE);
                     for (Roda roda : rodes) {
                         roda.setMarca(marca);
                         roda.setDiametre(diametre);
@@ -146,12 +146,12 @@ public class LlistaVehicles implements ErrorChecker {
                 } else {
                     for (Roda roda : rodes) {
                         String marca = scan.nextLine();
-                        int diametre = checkIntPos(Byte.MAX_VALUE);
+                        int diametre = ErrorChecker.checkIntPos(Byte.MAX_VALUE);
                         roda.setMarca(marca);
                         roda.setDiametre(diametre);
                     }
                 }
-                double preuBase = checkDoublePos(Double.MAX_VALUE);
+                double preuBase = ErrorChecker.checkDoublePos(Double.MAX_VALUE);
                 String marca = scan.nextLine();
                 String model = scan.nextLine();
                 vehicles.add(new Furgoneta(matricula, marca, model, preuBase, capacitatCarrega, motor, rodes));
