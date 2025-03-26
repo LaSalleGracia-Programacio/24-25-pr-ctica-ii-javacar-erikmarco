@@ -58,24 +58,24 @@ public class LlistaVehicles implements ErrorChecker {
         int opcio = ErrorChecker.checkIntPos(3);
         switch (opcio) {
             case 1 -> {
-                System.out.println("matricula");
+                System.out.print("Introdueix la matricula del vehicle: ");
                 String matricula = scan.nextLine();
-                System.out.println("potncia");
+                System.out.print("Introdueix la potencia: ");
                 int potencia = ErrorChecker.checkIntPos(Integer.MAX_VALUE);
-                System.out.println("tipus");
+                System.out.print("Introdueix el tipus de vehicle: ");
                 String combustible = scan.nextLine();
                 Motor motor = new Motor(combustible, potencia);
-                System.out.println("persones");
+                System.out.print("Introdueix el numero de persones: ");
                 int persones = ErrorChecker.checkIntPos(9);
-                System.out.println("nrodes");
+                System.out.print("Introdueix el numero de rodes: ");
                 int nRodes = ErrorChecker.checkIntPos(10);
                 Roda[] rodes = new Roda[nRodes];
                 System.out.println("rodes iguals? TEST PON 1 POR FAVOR");
                 boolean rodesIguals = ErrorChecker.checkIntPos(2) == 1;
                 if (rodesIguals) {
-                    System.out.println("marca");
+                    System.out.println("Introdueix la marca de roda");
                     String marca = scan.nextLine();
-                    System.out.println("diametre");
+                    System.out.println("Introdueix el diametre de la roda");
                     int diametre = ErrorChecker.checkIntPos(Byte.MAX_VALUE);
                     for (Roda roda : rodes) {
                         roda = new Roda(marca, diametre);
@@ -87,11 +87,11 @@ public class LlistaVehicles implements ErrorChecker {
                         roda = new Roda(marca, diametre);
                     }
                 }
-                System.out.println("preu base");
+                System.out.print("Introdueix el preu base: ");
                 double preuBase = ErrorChecker.checkDoublePos(Double.MAX_VALUE);
-                System.out.println("marca");
+                System.out.print("Introdueix la marca: ");
                 String marca = scan.nextLine();
-                System.out.println("model");
+                System.out.println("Introdueix el model: ");
                 String model = scan.nextLine();
                 vehicles.add(new Cotxe(matricula, marca, model, preuBase, persones, motor, rodes));
                 try {

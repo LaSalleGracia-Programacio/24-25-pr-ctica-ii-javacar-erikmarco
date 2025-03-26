@@ -57,7 +57,7 @@ public class Main {
 
                                 switch (opcioAdmin) {
                                     case "1":
-                                        System.out.println("");
+                                        LlistaVehicles.afegirVehicle();
                                         break;
                                     case "2":
                                         System.out.println("");
