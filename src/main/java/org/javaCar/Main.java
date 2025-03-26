@@ -156,7 +156,6 @@ public class Main {
                     System.out.println("Opció no vàlida. Torna-ho a intentar.");
             }
         }
-        GestorUsuaris.menuGestorUsuaris();
         scanner.close();
     }
 
