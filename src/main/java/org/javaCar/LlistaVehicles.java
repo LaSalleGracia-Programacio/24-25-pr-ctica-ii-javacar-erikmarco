@@ -70,7 +70,7 @@ public class LlistaVehicles implements ErrorChecker {
                 System.out.print("Introdueix el numero de rodes: ");
                 int nRodes = ErrorChecker.checkIntPos(10);
                 Roda[] rodes = new Roda[nRodes];
-                System.out.println("rodes iguals? TEST PON 1 POR FAVOR");
+                System.out.println("Són totes les rodes iguals?");
                 boolean rodesIguals = ErrorChecker.checkIntPos(2) == 1;
                 if (rodesIguals) {
                     System.out.println("Introdueix la marca de roda");
