@@ -212,17 +212,61 @@ public class LlistaVehicles implements ErrorChecker {
         int persones = ErrorChecker.checkIntPos(Integer.MAX_VALUE);
 
         for (Vehicle v : vehicles) {
-            int places = v.getNumPlaces();
+            if (v instanceof Cotxe cotxe) {
+                int places = cotxe.getNumPlaces();
 
-            if (places != -1) {
                 if (minMax && places >= persones) {
-                    System.out.println(v);
+                    System.out.println(cotxe);
                 } else if (!minMax && places < persones) {
-                    System.out.println(v);
+                    System.out.println(cotxe);
                 }
             }
         }
     }
+
+    public static void filtrarCilindrada() {
+        System.out.println("Filtrar per cilindrada:");
+        System.out.println("1. Igual o més");
+        System.out.println("2. Menys");
+        boolean minMax = ErrorChecker.checkIntPos(2) == 1;
+
+        System.out.print("Introdueix la cilindrada: ");
+        int persones = ErrorChecker.checkIntPos(Integer.MAX_VALUE);
+
+        for (Vehicle v : vehicles) {
+            if (v instanceof Moto moto) {
+                int places = moto.getCilindrada();
+
+                if (minMax && places >= persones) {
+                    System.out.println(moto.toString());
+                } else if (!minMax && places < persones) {
+                    System.out.println(moto.toString());
+                }
+            }
+        }
+    }
+    public static void filtrarCarrega() {
+        System.out.println("Filtrar per capacitat de càrrega:");
+        System.out.println("1. Igual o més");
+        System.out.println("2. Menys");
+        boolean minMax = ErrorChecker.checkIntPos(2) == 1;
+
+        System.out.print("Introdueix la cilindrada: ");
+        int persones = ErrorChecker.checkIntPos(Integer.MAX_VALUE);
+
+        for (Vehicle v : vehicles) {
+            if (v instanceof Furgoneta furgo) {
+                int places = furgo.getCapacitatCarga();
+
+                if (minMax && places >= persones) {
+                    System.out.println(furgo.toString());
+                } else if (!minMax && places < persones) {
+                    System.out.println(furgo.toString());
+                }
+            }
+        }
+    }
+
 
     public static void filtrarTipusVehicle() {
         System.out.println("Filtrar per tipus de vehicle:");
