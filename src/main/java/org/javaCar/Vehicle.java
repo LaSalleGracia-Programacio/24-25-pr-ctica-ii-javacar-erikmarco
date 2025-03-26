@@ -103,7 +103,9 @@ public abstract class Vehicle implements Llogable {
     public DistintiusAmbientals getDistintiuAmbiental() {
         return distintiuAmbiental;
     }
-
+    public int getPotencia() {
+        return motor.getPotencia();
+    }
     public String getMotor() {
         return motor.toString();
     }
