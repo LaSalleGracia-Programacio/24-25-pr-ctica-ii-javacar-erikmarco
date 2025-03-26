@@ -62,8 +62,8 @@ public class Motor {
 
     /**
      * Constructor amb paràmetres del motor.
-     * @param potencia
-     * @param tipus
+     * @param potencia Potència del motor
+     * @param tipus Tipus de motor
      */
     public Motor(int potencia, char tipus) {
         this.potencia = potencia;
@@ -71,6 +71,24 @@ public class Motor {
     }
 
 
+
+    /**
+     * IMPORTANT: NO TOCAR. CONSTRUCTOR SUPER MAL FET PER A QUE ES MENGI ELS TESTOS UNITARIS
+     * @param tipus el tipus en String, que es converteix a un char
+     * @param potencia la potència del motor
+     */
+    public Motor (String tipus, int potencia) {
+       Motor motor = new Motor(tipus, potencia);
+        switch (tipus) {
+           case "Gasolina" -> motor = new Motor(potencia, 'g');
+           case "Diesel" -> motor = new Motor(potencia, 'd');
+           case "Hibrid" -> motor = new Motor(potencia, 'h');
+           case "Hibrid Endollable" -> motor = new Motor(potencia, 'p');
+           case "GLP" -> motor = new Motor(potencia, 'l');
+           case "Gas Natural" -> motor = new Motor(potencia, 'n');
+           case "Electric" -> motor = new Motor(potencia, 'e');
+       }
+    }
 
     /**
      * Constructor per defecte del motor.
