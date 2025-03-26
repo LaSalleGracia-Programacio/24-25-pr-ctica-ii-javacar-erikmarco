@@ -19,14 +19,14 @@ public class Main {
             System.out.println("2. Iniciar sessió");
             System.out.println("3. Sortir");
             System.out.print("Opció: ");
-            String opcio = scanner.nextLine();
+            int opcio = ErrorChecker.checkIntPos(3)
 
             switch (opcio) {
-                case "1":
+                case 1:
                     Persona.registrarPersona(scanner);
                     break;
 
-                case "2":
+                case 2:
                     System.out.print("Nom: ");
                     String nom = scanner.nextLine();
 
@@ -53,45 +53,34 @@ public class Main {
                                 System.out.println("5. Consultar balanç de beneficis");
                                 System.out.println("6. Tancar sessió");
                                 System.out.print("Opció: ");
-                                String opcioAdmin = scanner.nextLine();
+                                int opcioAdmin = ErrorChecker.checkIntPos(6);
 
                                 switch (opcioAdmin) {
-                                    case "1":
+                                    case 1:
                                         LlistaVehicles.afegirVehicle();
-                                        break;
-                                    case "2":
+                                    break;
+                                    case 2:
                                         System.out.println("");
-                                        break;
-                                    case "3":
+                                    break;
+                                    case 3:
                                         System.out.println("");
-                                        break;
-                                    case "4":
+                                    break;
+                                    case 4:
                                         System.out.println("");
-                                        break;
-                                    case "5":
+                                    break;
+                                    case 5:
                                         System.out.println("Benvingut al gestor d'usuaris");
                                         System.out.println("1. Veure llista d'usuaris");
                                         System.out.println("2. Eliminar usuari");
                                         System.out.print("Opció: ");
-                                        String opcioGestor = scanner.nextLine();
-
-                                        switch (opcioGestor) {
-                                            case "1":
-                                                System.out.println("");
-                                                break;
-
-                                            case "2":
-                                                System.out.println("");
-                                                break;
-                                        }
-                                        break;
-
-                                    case "6":
+                                        boolean opcioGestor = ErrorChecker.checkIntPos(2) == 1;
+                                        if (!opcioGestor) System.out.println("Eliminar usuari");
+                                        else System.out.println("Veure llista d'usuaris");
+                                    break;
+                                    case 6:
                                         System.out.println("Sessió tancada.");
                                         tancarSessio = true;
-                                        break;
-                                    default:
-                                        System.out.println("Opció no vàlida.");
+                                    break;
                                 }
 
                             } else if (tipus.equals("Usuari")) {
@@ -104,10 +93,10 @@ public class Main {
                                     System.out.println("3. Mirar historial de lloguers");
                                     System.out.println("4. Tancar sessió");
                                     System.out.print("Opció: ");
-                                    String opcioUsuari = scanner.nextLine();
+                                    int opcioUsuari = ErrorChecker.checkIntPos(3);
 
                                     switch (opcioUsuari) {
-                                        case "1":
+                                        case 1:
                                             System.out.println("Benvingut al buscador de vehicles disponibles.");
                                             System.out.println("1. Veure la llista de vehicles");
                                             System.out.println("2. Ordenar/Filtrar vehicles");
@@ -118,17 +107,15 @@ public class Main {
                                                 LlistaVehicles.ordenarVehicles();
                                                 LlistaVehicles.mostrarLlista();
                                             }
-
-                                        case "2":
+                                        break;
+                                        case 2:
                                             System.out.println("Funció per llogar vehicle");
-                                            break;
-                                        case "3":
+                                        break;
+                                        case 3:
                                             System.out.println("Sessió tancada.");
                                             tornarMenuUsuari = true;
                                             tancarSessio = true;
-                                            break;
-                                        default:
-                                            System.out.println("Opció no vàlida.");
+                                        break;
                                     }
                                 }
                             }
@@ -139,7 +126,7 @@ public class Main {
                     }
                     break;
 
-                case "3":
+                case 3:
                     System.out.println("Sortint del programa...");
                     sortir = true;
                     break;
