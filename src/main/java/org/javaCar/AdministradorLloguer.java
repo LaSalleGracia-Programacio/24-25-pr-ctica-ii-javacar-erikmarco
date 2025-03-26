@@ -136,6 +136,46 @@ public class AdministradorLloguer extends LlistaVehicles {
         // Perform the actual rental
         AdministradorLloguer.llogar(matricula, dies);
     }
+    public static void generarInformeBeneficis() {
+        double totalBeneficis = 0;
+
+        try (Scanner lector = new Scanner(new java.io.File("vehiclesLlogats.csv"))) {
+            while (lector.hasNextLine()) {
+                String linia = lector.nextLine();
+                String[] camps = linia.split(",");
+
+                String matricula = camps[0];
+                int diesLlogats = Integer.parseInt(camps[2]);
+
+                if (diesLlogats <= 0) continue;
+
+                // Buscar el vehicle per matrícula
+                Vehicle v = null;
+                for (Vehicle veh : vehicles) {
+                    if (veh.getMatricula().equalsIgnoreCase(matricula)) {
+                        v = veh;
+                        break;
+                    }
+                }
+
+                if (v == null) continue;
+
+                // ✅ Càlcul polimòrfic del preu (sense instanceof)
+                double preu = v.calcularPreuLloguer(diesLlogats);
+                totalBeneficis += preu;
+            }
+
+            System.out.println("🔎 Informe de beneficis:");
+            System.out.println("Total ingressos generats per lloguers: " + totalBeneficis + " €");
+
+        } catch (IOException e) {
+            System.out.println("Error llegint el fitxer de lloguers: " + e.getMessage());
+            ErrorLogger.logError(e);
+        } catch (NumberFormatException nfe) {
+            System.out.println("Error de format al llegir dies o preu base.");
+            ErrorLogger.logError(nfe);
+        }
+    }
 
 
 }
