@@ -33,7 +33,7 @@ public class Main {
             if (tipus.equalsIgnoreCase("admin")) {
                 System.out.print("Nivell d'accés: ");
                 String nivellAcces = scanner.nextLine();
-                persona = new Administrador(nom, cognom, dni, email, nivellAcces);
+                persona = new Administrador(nom, cognom, dni, email,contrasenya, nivellAcces);
             } else {
                 System.out.print("Telèfon: ");
                 String telefon = scanner.nextLine();

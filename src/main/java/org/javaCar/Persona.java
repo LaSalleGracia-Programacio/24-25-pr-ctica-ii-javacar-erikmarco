@@ -1,32 +1,40 @@
 package org.javaCar;
 
-public abstract class  Persona {
+public abstract class Persona {
 
     protected String nom;
     protected String cognom;
     protected String dni;
-    protected String email;
+    protected String correu;
+    protected String contrasenya;
 
-    public Persona(String nom, String cognom, String dni, String email) {
+    public Persona(String nom, String cognom, String dni, String correu, String contrasenya) {
         this.nom = nom;
         this.cognom = cognom;
         this.dni = dni;
-        this.email = email;
+        this.correu = correu;
+        this.contrasenya = contrasenya;
     }
 
     public String obtenirNom() {
-        return nom; }
+        return nom;
+    }
 
     public String obtenirCognom() {
-        return cognom; }
+        return cognom;
+    }
 
     public String obtenirDni() {
-        return dni; }
+        return dni;
+    }
 
-    public String obtenirEmail() {
-        return email; }
+    public String obtenirCorreu() {
+        return correu;
+    }
 
+    public String obtenirContrasenya() {
+        return contrasenya;
+    }
 
     public abstract String toCSV();
 }
-
