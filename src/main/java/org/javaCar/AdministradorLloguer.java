@@ -34,7 +34,11 @@ public class AdministradorLloguer extends LlistaVehicles {
                 int diesLlogats = vehiclesLlogats.getOrDefault(matricula, 0); // Get rental days
                 String dataLloguer = diesLlogats > 0 ? LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) : v.getDataAddicio().toString();
 
-                writer.println(matricula + "," + (diesLlogats > 0) + "," + diesLlogats + "," + dataLloguer + "," +
+                // Get the type of the vehicle (subclass name)
+                String vehicleType = v.getClass().getSimpleName(); // "Cotxe", "Moto", or "Furgoneta"
+
+                // Write vehicle data to the CSV
+                writer.println(vehicleType + "," + matricula + "," + (diesLlogats > 0) + "," + diesLlogats + "," + dataLloguer + "," +
                         v.getMarca() + "," + v.getModel() + "," + v.getMotor() + "," + v.getRodes() + "," +
                         v.getDistintiuAmbiental() + "," + v.getPreuBase());
             }
@@ -46,30 +50,6 @@ public class AdministradorLloguer extends LlistaVehicles {
         }
     }
 
-    public static void llogar(String matricula, int dies) {
-        if (!vehiclesLlogats.containsKey(matricula)) {
-            System.out.println("Error: El vehicle amb matrícula " + matricula + " no existeix.");
-            return;
-        }
-
-        if (vehiclesLlogats.get(matricula) > 0) {
-            System.out.println("El vehicle ja està llogat.");
-            return;
-        }
-
-        // Update rental status and CSV immediately
-        toggleLlogat(matricula, dies);
-        System.out.println("Vehicle " + matricula + " llogat per " + dies + " dies.");
-    }
-
-    public static void retornarVehicle(String matricula) {
-        if (vehiclesLlogats.containsKey(matricula) && vehiclesLlogats.get(matricula) > 0) {
-            toggleLlogat(matricula, 0);
-            System.out.println("Vehicle " + matricula + " retornat.");
-        } else {
-            System.out.println("Error: El vehicle no està llogat o no existeix.");
-        }
-    }
     public static void llogarVehicle() {
         System.out.println("--- LLOGAR VEHICLE ---");
         System.out.println("1. Cotxe");
@@ -78,7 +58,7 @@ public class AdministradorLloguer extends LlistaVehicles {
         int tipus = ErrorChecker.checkIntPos(3);
 
         System.out.print("Introdueix el nombre de dies de lloguer: ");
-        int dies = ErrorChecker.checkIntPos(365); // màxim 1 any
+        int dies = ErrorChecker.checkIntPos(365); // máx. 1 any
 
         String nomClasse = switch (tipus) {
             case 1 -> "Cotxe";
@@ -90,14 +70,15 @@ public class AdministradorLloguer extends LlistaVehicles {
         System.out.println("Vehicles disponibles de tipus " + nomClasse + ":");
         boolean trobat = false;
         for (Vehicle v : vehicles) {
-            if (v.getClass().getSimpleName().equals(nomClasse)) {
+            // Check the actual class of the vehicle and its type
+            if (v.getClass().getSimpleName().equals(nomClasse) && vehiclesLlogats.get(v.getMatricula()) == 0) {
                 System.out.println("- " + v.getMatricula() + " (" + v.getMarca() + " " + v.getModel() + ")");
                 trobat = true;
             }
         }
 
         if (!trobat) {
-            System.out.println("No hi ha vehicles disponibles d’aquest tipus.");
+            System.out.println("No hi ha vehicles disponibles d’aquest tipus o tots estan llogats.");
             return;
         }
 
@@ -117,8 +98,8 @@ public class AdministradorLloguer extends LlistaVehicles {
             return;
         }
 
+        // Calculate price based on vehicle subclass
         double preuFinal = 0;
-
         switch (nomClasse) {
             case "Cotxe" -> preuFinal = ((Cotxe) seleccionat).calcularPreuCotxe(dies, seleccionat.getPreuBase());
             case "Moto" -> preuFinal = ((Moto) seleccionat).calcularPreuMoto(dies, seleccionat.getPreuBase(), ((Moto) seleccionat).getCilindrada());
@@ -127,9 +108,10 @@ public class AdministradorLloguer extends LlistaVehicles {
 
         System.out.println("Preu total del lloguer per " + dies + " dies: " + preuFinal + " €");
 
-        // Si tens la gestió de lloguers (com a AdministradorLloguer)
+        // Perform the actual rental
         AdministradorLloguer.llogar(matricula, dies);
     }
+
 
 }
 
