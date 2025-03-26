@@ -19,7 +19,7 @@ public class Main {
             System.out.println("2. Iniciar sessió");
             System.out.println("3. Sortir");
             System.out.print("Opció: ");
-            int opcio = ErrorChecker.checkIntPos(3)
+            int opcio = ErrorChecker.checkIntPos(3);
 
             switch (opcio) {
                 case 1:
