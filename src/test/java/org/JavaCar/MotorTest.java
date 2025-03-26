@@ -1,6 +1,9 @@
 package org.JavaCar;
 
+import org.javaCar.Motor;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class MotorTest {
 
