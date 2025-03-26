@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Scanner;
 
 public class AdministradorLloguer extends LlistaVehicles {
     private static final HashMap<String, Integer> vehiclesLlogats = new HashMap<>();
@@ -144,7 +146,7 @@ public class AdministradorLloguer extends LlistaVehicles {
                 String linia = lector.nextLine();
                 String[] camps = linia.split(",");
 
-                String matricula = camps[0];
+                String matricula = camps[1];  // Assuming matricula is in the second column (index 1)
                 int diesLlogats = Integer.parseInt(camps[2]);
 
                 if (diesLlogats <= 0) continue;
@@ -160,8 +162,16 @@ public class AdministradorLloguer extends LlistaVehicles {
 
                 if (v == null) continue;
 
-                // ✅ Càlcul polimòrfic del preu (sense instanceof)
-                double preu = v.calcularPreuLloguer(diesLlogats);
+                // Calculate price based on vehicle subclass using instanceof
+                double preu = 0;
+                if (v instanceof Cotxe) {
+                    preu = ((Cotxe) v).calcularPreuCotxe(diesLlogats, v.getPreuBase());
+                } else if (v instanceof Moto) {
+                    preu = ((Moto) v).calcularPreuMoto(diesLlogats, v.getPreuBase(), ((Moto) v).getCilindrada());
+                } else if (v instanceof Furgoneta) {
+                    preu = ((Furgoneta) v).calcularPreuFurgoneta(diesLlogats, v.getPreuBase(), ((Furgoneta) v).getCapacitatCarga());
+                }
+
                 totalBeneficis += preu;
             }
 
@@ -175,6 +185,20 @@ public class AdministradorLloguer extends LlistaVehicles {
             System.out.println("Error de format al llegir dies o preu base.");
             ErrorLogger.logError(nfe);
         }
+    }
+    public static double calcularIngressosTotals(List<Vehicle> vehicles, int dies) {
+        double totalIngressos = 0;
+
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle instanceof Cotxe) {
+                vehicle.calcularPreuCotxe(dies, vehicle.getPreuBase());
+            } else if (vehicle instanceof Moto) {
+                vehicle.calcularPreuMoto(dies, vehicle.getPreuBase(), ((Moto) vehicle).getCilindrada());
+            } else if (vehicle instanceof Furgoneta) {
+                vehicle.calcularPreuMoto(dies, vehicle.getPreuBase(), ((Furgoneta) vehicle).getCapacitatCarga());
+            }
+        }
+        return totalIngressos;
     }
 
 
