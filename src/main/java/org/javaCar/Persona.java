@@ -40,6 +40,9 @@ public abstract class Persona {
         return contrasenya;
     }
 
+    public abstract String getTipusPersona();
+
+
     public abstract String toCSV();
 
     public static void registrarPersona(Scanner scanner) {

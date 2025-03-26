@@ -13,6 +13,11 @@ public class Administrador extends Persona {
     }
 
     @Override
+    public String getTipusPersona() {
+        return "Administrador";
+    }
+
+    @Override
     public String toCSV() {
         return "Administrador," + nom + "," + cognom + "," + dni + "," + correu + "," + contrasenya + "," + nivellAcces;
     }

@@ -13,6 +13,12 @@ public class Usuari extends Persona {
     }
 
     @Override
+    public String getTipusPersona() {
+        return "Usuari";
+    }
+
+
+    @Override
     public String toCSV() {
         return "Usuari," + nom + "," + cognom + "," + dni + "," + correu + "," + contrasenya + "," + telefon;
     }
