@@ -28,7 +28,7 @@ public class Main {
             System.out.print("Email: ");
             String email = scanner.nextLine();
 
-            System.out.println("Contrasenya: ");
+            System.out.print("Contrasenya: ");
             String contrasenya = scanner.nextLine();
 
             Persona persona;
