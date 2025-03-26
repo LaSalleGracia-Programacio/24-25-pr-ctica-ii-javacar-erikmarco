@@ -1,6 +1,7 @@
 package org.javaCar;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Comparator;
 
@@ -24,6 +25,18 @@ public class LlistaVehicles implements ErrorChecker {
             case 3 -> {
                 System.out.print(" distintiu ambiental");
                 ordenar = Comparator.comparing(Vehicle::getDistintiuAmbiental).thenComparing(Vehicle::getMatricula);
+            }
+            case 4 -> {
+                System.out.print(" distintiu ambiental");
+
+                List<DistintiusAmbientals> sortOrder = Arrays.asList(
+                        DistintiusAmbientals.NULL,
+                        DistintiusAmbientals.B,
+                        DistintiusAmbientals.C,
+                        DistintiusAmbientals.ECO,
+                        DistintiusAmbientals.ZERO
+                );
+                ordenar = Comparator.comparing(vehicle -> sortOrder.indexOf(vehicle.getDistintiuAmbiental()));
             }
         }
         System.out.print(" de manera");
