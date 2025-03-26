@@ -60,8 +60,11 @@ public class Main {
                                         LlistaVehicles.afegirVehicle();
                                     break;
                                     case 2:
-                                        System.out.println("");
-                                    break;
+
+                                        LlistaVehicles.modificarVehicle();
+                                        break;
+
+
                                     case 3:
                                         System.out.print("Introdueix la matrícula del vehicle a eliminar: ");
                                         String matriculaEliminar = scanner.nextLine();
