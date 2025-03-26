@@ -331,7 +331,9 @@ public class LlistaVehicles implements ErrorChecker {
     }
 
 
-    public void eliminarVehicle(String matricula) {
+
+
+    public static void eliminarVehicle(String matricula) {
         vehicles.removeIf(vehicle -> vehicle.getMatricula().equals(matricula));
     }
 }

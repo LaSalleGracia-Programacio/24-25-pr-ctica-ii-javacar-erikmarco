@@ -63,7 +63,10 @@ public class Main {
                                         System.out.println("");
                                     break;
                                     case 3:
-                                        System.out.println("");
+                                        System.out.print("Introdueix la matrícula del vehicle a eliminar: ");
+                                        String matriculaEliminar = scanner.nextLine();
+                                        LlistaVehicles.eliminarVehicle(matriculaEliminar);
+                                        System.out.println("Vehicle eliminat si existia.");
                                     break;
                                     case 4:
                                         System.out.println("");
