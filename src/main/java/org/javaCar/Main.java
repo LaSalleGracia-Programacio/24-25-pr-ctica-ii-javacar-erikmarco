@@ -75,7 +75,7 @@ public class Main {
                                         System.out.print("Opció: ");
                                         String opcioGestor = scanner.nextLine();
 
-                                        switch (opcioGestor){
+                                        switch (opcioGestor) {
                                             case "1":
                                                 System.out.println("");
                                                 break;
@@ -95,43 +95,49 @@ public class Main {
                                 }
 
                             } else if (tipus.equals("Usuari")) {
-                                System.out.println("--- MENÚ USUARI ---");
-                                System.out.println("1. Buscar vehicles disponibles per llogar");
-                                System.out.println("2. Llogar un vehicle");
-                                System.out.println("3. Mirar historial de lloguers");
-                                System.out.println("4. Tancar sessió");
-                                System.out.print("Opció: ");
-                                String opcioUsuari = scanner.nextLine();
+                                boolean tornarMenuUsuari = false;
 
-                                switch (opcioUsuari) {
-                                    case "1":
-                                        System.out.println("Benvingut al buscador de vehicles disponibles.");
-                                        System.out.println("1. Veure la llista de vehicles");
-                                        System.out.println("2. Ordenar/Filtrar vehicles");
-                                        System.out.print("Opció: ");
-                                        String opcioBuscar = scanner.nextLine();
+                                while (!tornarMenuUsuari) {
+                                    System.out.println("--- MENÚ USUARI ---");
+                                    System.out.println("1. Buscar vehicles disponibles per llogar");
+                                    System.out.println("2. Llogar un vehicle");
+                                    System.out.println("3. Mirar historial de lloguers");
+                                    System.out.println("4. Tancar sessió");
+                                    System.out.print("Opció: ");
+                                    String opcioUsuari = scanner.nextLine();
 
-                                        switch (opcioBuscar) {
-                                            case "1":
-                                                LlistaVehicles.mostrarLlista();
-                                                break;
-                                            case "2":
+                                    switch (opcioUsuari) {
+                                        case "1":
+                                            System.out.println("Benvingut al buscador de vehicles disponibles.");
+                                            System.out.println("1. Veure la llista de vehicles");
+                                            System.out.println("2. Ordenar/Filtrar vehicles");
+                                            System.out.print("Opció: ");
+                                            String opcioBuscar = scanner.nextLine();
 
-                                                break;
-                                            default:
-                                                System.out.println("Opció no vàlida.");
-                                        }
-                                        break;
+                                            switch (opcioBuscar) {
+                                                case "1":
+                                                    LlistaVehicles.mostrarLlista();
+                                                    break;
+                                                case "2":
+                                                    LlistaVehicles.ordenarVehicles();
+                                                    LlistaVehicles.mostrarLlista();
+                                                    break;
+                                                default:
+                                                    System.out.println("Opció no vàlida.");
+                                            }
+                                            break;
 
-                                    case "2":
-                                        System.out.println("Funció per llogar vehicle (pendent d'implementar)");
-                                        break;
-                                    case "3":
-                                        System.out.println("Sessió tancada.");
-                                        tancarSessio = true;
-                                        break;
-                                    default:
-                                        System.out.println("Opció no vàlida.");
+                                        case "2":
+                                            System.out.println("Funció per llogar vehicle");
+                                            break;
+                                        case "3":
+                                            System.out.println("Sessió tancada.");
+                                            tornarMenuUsuari = true;
+                                            tancarSessio = true;
+                                            break;
+                                        default:
+                                            System.out.println("Opció no vàlida.");
+                                    }
                                 }
                             }
                         }
