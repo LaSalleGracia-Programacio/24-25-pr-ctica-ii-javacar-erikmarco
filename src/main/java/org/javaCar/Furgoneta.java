@@ -45,13 +45,13 @@ public class Furgoneta extends Vehicle implements Llogable{
      * @param rodes
      */
     public Furgoneta(String matricula, String marca, String model, double preuBase, int capacitatCarga, Motor motor, Roda[] rodes){
-        this.matricula = matricula;
-        this.marca = marca;
-        this.model = model;
-        this.preuBase = preuBase;
+        setMatricula(matricula);
+        setMarca(marca);
+        setModel(model);
+        setPreuBase(preuBase);
+        setMotor(motor);
+        setRodes(rodes);
         this.capacitatCarga = capacitatCarga;
-        this.motor = motor;
-        this.rodes = rodes;
     }
 
     /**

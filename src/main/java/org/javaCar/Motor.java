@@ -1,8 +1,11 @@
 package org.javaCar;
 
+import java.util.Random;
+
 public class Motor {
     //Declaració de variables
     private int potencia;
+    Random rand = new Random();
     private char tipus;
     /*
      * Segons el caràcter assignat:
@@ -14,6 +17,16 @@ public class Motor {
      * n: gas natural (GNC)
      * l: gas liquat de petroli (GLP)
      */
+
+    private double emissionsCO = 0.0;
+    private double emissionsTHC = 0.0;
+    private double emissionsNMHC = 0.0;
+    private double emissionsNOx = 0.0;
+    private double emissionsHC_NOx = 0.0;
+    private double emissionsPM = 0.0;
+    private byte emissionsPN = 0;
+    private byte rangHibrid = 0;
+    private int anyConstruccio = 0;
 
     /**
      * Setter de la potència d'un motor. Només s'hauria de fer servir en cas que s'hagi declarat erròniament.
@@ -28,7 +41,7 @@ public class Motor {
      * @param tipus El nou tipus de combustible del motor.
      */
     public void setTipus(char tipus) {
-        tipus = tipus;
+        this.tipus = tipus;
     }
 
     /**
@@ -56,6 +69,8 @@ public class Motor {
         this.potencia = potencia;
         this.tipus = tipus;
     }
+
+
 
     /**
      * IMPORTANT: NO TOCAR. CONSTRUCTOR SUPER MAL FET PER A QUE ES MENGI ELS TESTOS UNITARIS
@@ -88,4 +103,75 @@ public class Motor {
     }
 
 
+    public double getEmissionsCO() {
+        return emissionsCO;
+    }
+
+    public void setEmissionsCO(double emissionsCO) {
+        this.emissionsCO = emissionsCO;
+    }
+
+    public double getEmissionsTHC() {
+        return emissionsTHC;
+    }
+
+    public void setEmissionsTHC(double emissionsTHC) {
+        this.emissionsTHC = emissionsTHC;
+    }
+
+    public double getEmissionsNMHC() {
+        return emissionsNMHC;
+    }
+
+    public void setEmissionsNMHC(double emissionsNMHC) {
+        this.emissionsNMHC = emissionsNMHC;
+    }
+
+    public double getEmissionsNOx() {
+        return emissionsNOx;
+    }
+
+    public void setEmissionsNOx(double emissionsNOx) {
+        this.emissionsNOx = emissionsNOx;
+    }
+
+    public double getEmissionsHC_NOx() {
+        return emissionsHC_NOx;
+    }
+
+    public void setEmissionsHC_NOx(double emissionsHC_NOx) {
+        this.emissionsHC_NOx = emissionsHC_NOx;
+    }
+
+    public double getEmissionsPM() {
+        return emissionsPM;
+    }
+
+    public void setEmissionsPM(double emissionsPM) {
+        this.emissionsPM = emissionsPM;
+    }
+
+    public byte getEmissionsPN() {
+        return emissionsPN;
+    }
+
+    public void setEmissionsPN(byte emissionsPN) {
+        this.emissionsPN = emissionsPN;
+    }
+
+    public byte getRangHibrid() {
+        return rangHibrid;
+    }
+
+    public void setRangHibrid(byte rangHibrid) {
+        this.rangHibrid = rangHibrid;
+    }
+
+    public int getAnyConstruccio() {
+        return anyConstruccio;
+    }
+
+    public void setAnyConstruccio(int anyConstruccio) {
+        this.anyConstruccio = anyConstruccio;
+    }
 }
