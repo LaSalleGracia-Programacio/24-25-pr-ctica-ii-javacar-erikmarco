@@ -50,6 +50,31 @@ public class AdministradorLloguer extends LlistaVehicles {
         }
     }
 
+
+    public static void llogar(String matricula, int dies) {
+        if (!vehiclesLlogats.containsKey(matricula)) {
+            System.out.println("Error: El vehicle amb matrícula " + matricula + " no existeix.");
+            return;
+        }
+
+        if (vehiclesLlogats.get(matricula) > 0) {
+            System.out.println("El vehicle ja està llogat.");
+            return;
+        }
+
+        // Update rental status and CSV immediately
+        toggleLlogat(matricula, dies);
+        System.out.println("Vehicle " + matricula + " llogat per " + dies + " dies.");
+    }
+
+    public static void retornarVehicle(String matricula) {
+        if (vehiclesLlogats.containsKey(matricula) && vehiclesLlogats.get(matricula) > 0) {
+            toggleLlogat(matricula, 0);
+            System.out.println("Vehicle " + matricula + " retornat.");
+        } else {
+            System.out.println("Error: El vehicle no està llogat o no existeix.");
+        }
+    }
     public static void llogarVehicle() {
         System.out.println("--- LLOGAR VEHICLE ---");
         System.out.println("1. Cotxe");
