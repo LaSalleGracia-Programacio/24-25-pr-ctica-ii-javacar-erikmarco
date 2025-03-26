@@ -352,7 +352,7 @@ public class LlistaVehicles implements ErrorChecker {
         // Modificar potència
         System.out.print("Introdueix nova potència (actual: " + vehicle.getPotencia() + "): ");
         int novaPotencia = ErrorChecker.checkIntPos(Integer.MAX_VALUE);
-        vehicle.getMotor().setPotencia(novaPotencia);
+        vehicle.getMotorPure().setPotencia(novaPotencia);
 
         // Modificar preu base
         System.out.print("Introdueix nou preu base (actual: " + vehicle.getPreuBase() + "): ");
