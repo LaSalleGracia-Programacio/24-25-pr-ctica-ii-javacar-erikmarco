@@ -34,4 +34,20 @@ public interface ErrorChecker {
             return n;
         }
     }
+    public default double checkDoublePos (double max) {
+        while (true) {
+            if (!scan.hasNextDouble()) {
+                System.out.println("ERROR: Has de introduir un valor entre 0 i " + max);
+                scan.next();
+                continue;
+            }
+            double n = scan.nextDouble();
+            if (n > max) {
+                System.out.println("ERROR: Has de introduir un valor entre 0 i " + max);
+                scan.next();
+                continue;
+            }
+            return n;
+        }
+    }
 }

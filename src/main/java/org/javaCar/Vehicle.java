@@ -56,6 +56,10 @@ public abstract class Vehicle implements Llogable {
         return marca;
     }
 
+    public Motor getMotorPure() {
+        return motor;
+    }
+
     /**
      * Setter de la marca d'un vehicle. Només s'hauria de fer servir en cas que s'hagi declarat el vehicle malament.
      * @param marca La nova marca d'un vehicle
