@@ -1,3 +1,0 @@
-java.lang.Exception: test
-	at org.javaCar.Main.main(Main.java:11)
-

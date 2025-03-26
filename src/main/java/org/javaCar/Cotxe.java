@@ -1,8 +1,9 @@
 package org.javaCar;
 
+import java.time.Instant;
+
 public class Cotxe extends Vehicle implements Llogable{
     private int numPlaces;
-
     /**
      * Getter del nombre de places d'un cotxe
      * @return El nombre de places d'un cotxe
@@ -44,6 +45,7 @@ public class Cotxe extends Vehicle implements Llogable{
         setMotor(motor);
         setRodes(rodes);
         this.numPlaces = numPlaces;
+        setDataAddicio(Instant.now());
     }
 
 

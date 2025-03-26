@@ -58,31 +58,40 @@ public class LlistaVehicles implements ErrorChecker {
         int opcio = ErrorChecker.checkIntPos(3);
         switch (opcio) {
             case 1 -> {
+                System.out.println("matricula");
                 String matricula = scan.nextLine();
+                System.out.println("potncia");
                 int potencia = ErrorChecker.checkIntPos(Integer.MAX_VALUE);
+                System.out.println("tipus");
                 String combustible = scan.nextLine();
                 Motor motor = new Motor(combustible, potencia);
+                System.out.println("persones");
                 int persones = ErrorChecker.checkIntPos(9);
+                System.out.println("nrodes");
                 int nRodes = ErrorChecker.checkIntPos(10);
                 Roda[] rodes = new Roda[nRodes];
+                System.out.println("rodes iguals? TEST PON 1 POR FAVOR");
                 boolean rodesIguals = ErrorChecker.checkIntPos(2) == 1;
                 if (rodesIguals) {
+                    System.out.println("marca");
                     String marca = scan.nextLine();
+                    System.out.println("diametre");
                     int diametre = ErrorChecker.checkIntPos(Byte.MAX_VALUE);
                     for (Roda roda : rodes) {
-                        roda.setMarca(marca);
-                        roda.setDiametre(diametre);
+                        roda = new Roda(marca, diametre);
                     }
                 } else {
                     for (Roda roda : rodes) {
                         String marca = scan.nextLine();
                         int diametre = ErrorChecker.checkIntPos(Byte.MAX_VALUE);
-                        roda.setMarca(marca);
-                        roda.setDiametre(diametre);
+                        roda = new Roda(marca, diametre);
                     }
                 }
+                System.out.println("preu base");
                 double preuBase = ErrorChecker.checkDoublePos(Double.MAX_VALUE);
+                System.out.println("marca");
                 String marca = scan.nextLine();
+                System.out.println("model");
                 String model = scan.nextLine();
                 vehicles.add(new Cotxe(matricula, marca, model, preuBase, persones, motor, rodes));
                 try {

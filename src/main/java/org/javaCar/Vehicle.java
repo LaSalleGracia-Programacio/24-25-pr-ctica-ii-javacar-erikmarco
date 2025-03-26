@@ -1,6 +1,7 @@
 package org.javaCar;
 import java.lang.StringBuilder;
 import java.util.Random;
+import java.time.Instant;
 /**
  * Aquesta classe és una superclasse de tots els tipus de vehicles oferits a carJava.
  */
@@ -28,7 +29,7 @@ public abstract class Vehicle implements Llogable {
     private Motor motor;
     private Roda[] rodes;
     private DistintiusAmbientals distintiuAmbiental;
-
+    private Instant dataAddicio;
 
     //Getters i setters
 
@@ -100,6 +101,14 @@ public abstract class Vehicle implements Llogable {
         this.preuBase = preuBase;
     }
 
+    public Instant getDataAddicio() {
+        return dataAddicio;
+    }
+
+    public void setDataAddicio(Instant dataAddicio) {
+        this.dataAddicio = dataAddicio;
+    }
+
     /**
      * Getter del distintiu ambiental d'un vehicle.
      * @return El distintiu ambiental d'un vehicle.
@@ -117,19 +126,20 @@ public abstract class Vehicle implements Llogable {
         this.motor = motor;
     }
     public String getRodes() {
-        sb.append("{\n");
+        sb.append("{");
         for (int i = 0; i < rodes.length; i++) {
             sb.append("roda ").append(i).append(": ").append(rodes[i].toString());
             if (i != rodes.length - 1) {
-                sb.append(",\n");
+                sb.append("}");
             }
         }
-        sb.append("\n}");
+        sb.append("}");
         return sb.toString();
     }
     public void setRodes(Roda[] rodes) {
         this.rodes = rodes;
     }
+
 
 
     //Declaració mètode per a formar el distintiu ambiental.

@@ -15,6 +15,7 @@ public interface ErrorChecker {
                 scan.next();
                 continue;
             }
+            scan.nextLine();
             return n;
         }
     }
@@ -31,6 +32,7 @@ public interface ErrorChecker {
                 scan.next();
                 continue;
             }
+            scan.nextLine();
             return n;
         }
     }
@@ -47,6 +49,7 @@ public interface ErrorChecker {
                 scan.next();
                 continue;
             }
+            scan.nextLine();
             return n;
         }
     }

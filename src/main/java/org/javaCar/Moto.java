@@ -1,5 +1,7 @@
 package org.javaCar;
 
+import java.time.Instant;
+
 public class Moto extends Vehicle implements Llogable {
     private int cilindrada;
     /**
@@ -51,6 +53,7 @@ public class Moto extends Vehicle implements Llogable {
         this.cilindrada = cilindrada;
         this.setMotor(motor);
         this.setRodes(rodes);
+        setDataAddicio(Instant.now());
     }
 
     /**

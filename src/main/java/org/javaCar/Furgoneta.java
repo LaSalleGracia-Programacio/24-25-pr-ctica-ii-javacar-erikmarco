@@ -1,5 +1,7 @@
 package org.javaCar;
 
+import java.time.Instant;
+
 public class Furgoneta extends Vehicle implements Llogable{
     private int capacitatCarga;
     /**
@@ -52,6 +54,7 @@ public class Furgoneta extends Vehicle implements Llogable{
         setMotor(motor);
         setRodes(rodes);
         this.capacitatCarga = capacitatCarga;
+        setDataAddicio(Instant.now());
     }
 
     /**

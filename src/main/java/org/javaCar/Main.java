@@ -7,8 +7,8 @@ public class Main {
 
     public static final DecimalFormat euros = new DecimalFormat("0.00 €");
 
+    public static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         boolean sortir = false;
 
         System.out.println("Benvingut a JavaCar!");
@@ -112,20 +112,12 @@ public class Main {
                                             System.out.println("1. Veure la llista de vehicles");
                                             System.out.println("2. Ordenar/Filtrar vehicles");
                                             System.out.print("Opció: ");
-                                            String opcioBuscar = scanner.nextLine();
-
-                                            switch (opcioBuscar) {
-                                                case "1":
-                                                    LlistaVehicles.mostrarLlista();
-                                                    break;
-                                                case "2":
-                                                    LlistaVehicles.ordenarVehicles();
-                                                    LlistaVehicles.mostrarLlista();
-                                                    break;
-                                                default:
-                                                    System.out.println("Opció no vàlida.");
+                                            boolean opcioBuscar = ErrorChecker.checkIntPos(2) == 1;
+                                            if (opcioBuscar) LlistaVehicles.mostrarLlista();
+                                            else {
+                                                LlistaVehicles.ordenarVehicles();
+                                                LlistaVehicles.mostrarLlista();
                                             }
-                                            break;
 
                                         case "2":
                                             System.out.println("Funció per llogar vehicle");
@@ -156,11 +148,10 @@ public class Main {
                     System.out.println("Opció no vàlida. Torna-ho a intentar.");
             }
         }
-
+        LlistaVehicles.afegirVehicle();
+        AdministradorLloguer.init();
+        AdministradorLloguer.llogar("sdfsdf", 3);
         scanner.close();
     }
 
-    public static void menuPrincipal() {
-
-    }
 }
