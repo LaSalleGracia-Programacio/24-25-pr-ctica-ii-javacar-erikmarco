@@ -178,6 +178,30 @@ public class LlistaVehicles implements ErrorChecker {
     }
 
 
+    public void filtrar() {
+        System.out.println("Potencia - 1");
+        byte opt = 1;
+        switch (opt) {
+            case 1 -> {
+                boolean minMax = ErrorChecker.checkIntPos(1) == 1;
+                int potencia = ErrorChecker.checkIntPos(Integer.MAX_VALUE);
+                if (minMax) {
+                    for (Vehicle v : vehicles) {
+                        if (v.getPotencia() >= potencia) {
+                            System.out.println(v.toString());
+                        }
+                    }
+                } else {
+                    for (Vehicle v : vehicles) {
+                        if (v.getPotencia() < potencia) {
+                            System.out.println(v.toString());
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     public void eliminarVehicle(String matricula) {
         vehicles.removeIf(vehicle -> vehicle.getMatricula().equals(matricula));
     }
