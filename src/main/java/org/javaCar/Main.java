@@ -113,7 +113,7 @@ public class Main {
 
                                         switch (opcioBuscar) {
                                             case "1":
-                                                LlistaVehicles.veureLlistaVehicles();
+                                                LlistaVehicles.mostrarLlista();
                                                 break;
                                             case "2":
 
