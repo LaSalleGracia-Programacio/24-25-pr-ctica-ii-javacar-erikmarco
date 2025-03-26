@@ -135,9 +135,7 @@ public class Main {
                     System.out.println("Opció no vàlida. Torna-ho a intentar.");
             }
         }
-        LlistaVehicles.afegirVehicle();
-        AdministradorLloguer.init();
-        AdministradorLloguer.llogar("sdfsdf", 3);
+        GestorUsuaris.menuGestorUsuaris();
         scanner.close();
     }
 

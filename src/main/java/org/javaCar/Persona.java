@@ -71,19 +71,23 @@ public abstract class Persona {
             if (tipus.equalsIgnoreCase("admin")) {
                 System.out.print("Nivell d'accés: ");
                 String nivellAcces = scanner.nextLine();
-                persona = new Administrador(nom,cognom,dni,correu,contrasenya,nivellAcces);
+                persona = new Administrador(nom, cognom, dni, correu, contrasenya, nivellAcces);
             } else {
                 System.out.print("Telèfon: ");
                 String telefon = scanner.nextLine();
-                persona = new Usuari(nom,cognom,dni,correu,contrasenya,telefon);
+                persona = new Usuari(nom, cognom, dni, correu, contrasenya, telefon);
             }
 
             writer.write(persona.toCSV() + "\n");
-            System.out.println("Persona registrada correctament!");
+            writer.flush(); // 🛠 Ensure data is saved immediately
+            System.out.println("✅ Persona registrada correctament!");
+            System.out.println("ℹ️ Persones registrades actualment:");
+            GestorUsuaris.mostrarUsuaris(); // 👈 Show users after registration
 
         } catch (IOException e) {
-            System.err.println("Error escrivint al fitxer: " + e.getMessage());
+            System.err.println("❌ Error escrivint al fitxer: " + e.getMessage());
         }
     }
+
 
 }
