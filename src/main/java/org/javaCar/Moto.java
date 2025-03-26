@@ -50,7 +50,7 @@ public class Moto extends Vehicle implements Llogable {
         this.setPreuBase(preuBase);
         this.cilindrada = cilindrada;
         this.setMotor(motor);
-        this.setRodes = (rodes);
+        this.setRodes(rodes);
     }
 
     /**
