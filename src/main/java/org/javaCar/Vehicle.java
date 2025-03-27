@@ -28,6 +28,9 @@ public abstract class Vehicle implements Llogable {
     public Vehicle(String matricula, String marca, String model, double preuBase) {
         this(matricula, marca, model, preuBase, null, null);
     }
+    public Vehicle() {
+        this(null, null, null, 0, null, null);
+    }
 
     // Override methods from Llogable interface
     @Override
