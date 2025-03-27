@@ -25,6 +25,10 @@ public abstract class Vehicle implements Llogable {
         }
     }
 
+    public Vehicle(String matricula, String marca, String model, double preuBase) {
+        this(matricula, marca, model, preuBase, null, null);
+    }
+
     // Override methods from Llogable interface
     @Override
     public double calcularPreuCotxe(int dies, double preuBase) {
