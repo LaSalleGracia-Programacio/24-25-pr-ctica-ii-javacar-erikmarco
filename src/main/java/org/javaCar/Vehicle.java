@@ -49,7 +49,7 @@ public abstract class Vehicle implements Llogable {
     }
 
     // Declare attributes
-    private String matricula;
+    protected String matricula;
     private String marca;
     private String model;
     private double preuBase;

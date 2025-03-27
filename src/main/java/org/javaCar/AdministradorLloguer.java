@@ -191,15 +191,17 @@ public class AdministradorLloguer extends LlistaVehicles {
 
         for (Vehicle vehicle : vehicles) {
             if (vehicle instanceof Cotxe) {
-                vehicle.calcularPreuCotxe(dies, vehicle.getPreuBase());
+                totalIngressos += ((Cotxe) vehicle).calcularPreuCotxe(dies, vehicle.getPreuBase());
             } else if (vehicle instanceof Moto) {
-                vehicle.calcularPreuMoto(dies, vehicle.getPreuBase(), ((Moto) vehicle).getCilindrada());
+                totalIngressos += ((Moto) vehicle).calcularPreuMoto(dies, vehicle.getPreuBase(), ((Moto) vehicle).getCilindrada());
             } else if (vehicle instanceof Furgoneta) {
-                vehicle.calcularPreuMoto(dies, vehicle.getPreuBase(), ((Furgoneta) vehicle).getCapacitatCarga());
+                totalIngressos += ((Furgoneta) vehicle).calcularPreuFurgoneta(dies, vehicle.getPreuBase(), ((Furgoneta) vehicle).getCapacitatCarga());
             }
         }
+
         return totalIngressos;
     }
+
 
 
 }

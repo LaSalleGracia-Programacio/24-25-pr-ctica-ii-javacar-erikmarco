@@ -21,7 +21,7 @@ public class VehicleTest {
         assertEquals("Ford", vehicle.getMarca());
         assertEquals("Focus", vehicle.getModel());
         assertEquals(28, vehicle.getPreuBase(), 0.01);
-        assertNull(vehicle.getMotor());
+        assertNull(vehicle.getMotorPure());
         assertNull(vehicle.getRodes());
     }
 
@@ -35,7 +35,7 @@ public class VehicleTest {
         assertEquals("Toyota", vehicle.getMarca());
         assertEquals("Corolla", vehicle.getModel());
         assertEquals(30, vehicle.getPreuBase(), 0.01);
-        assertEquals(motor, vehicle.getMotor());
+        assertEquals(motor, vehicle.getMotorPure());
         assertArrayEquals(rodes, vehicle.getRodesMatriu());
     }
 
