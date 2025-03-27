@@ -20,12 +20,7 @@ public class Cotxe extends Vehicle implements Llogable{
         this.numPlaces = numPlaces;
     }
 
-    /**
-     * Constructor per defecte d'un cotxe.
-     */
-    public Cotxe() {
-        this(null, null, null, 0, 0, new Motor(), new Roda[0]);
-    }
+
 
     /**
      * Constructor amb paràmetres d'un cotxe
@@ -47,10 +42,11 @@ public class Cotxe extends Vehicle implements Llogable{
         super(matricula, marca, model, preuBase);
         this.numPlaces = numPlaces;
     }
-    public Cotxe() {
-        this(null, null, null, 0, 0, new Motor(), new Roda[0]);
-    }
 
+    public Cotxe() {
+        super();
+        this.numPlaces = 0;
+    }
 
     /**
      * Aquest mètode calcula el preu total del lloguer d'un cotxe
