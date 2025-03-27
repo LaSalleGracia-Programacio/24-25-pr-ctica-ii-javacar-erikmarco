@@ -125,7 +125,7 @@ public abstract class Vehicle implements Llogable {
 
     public String getRodes() {
         if (rodes == null || rodes.length == 0) {
-            return "{}"; // Return empty braces if no wheels are set
+            return null; // Return empty braces if no wheels are set
         }
 
         sb.setLength(0); // Reset the StringBuilder
