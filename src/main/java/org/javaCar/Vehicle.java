@@ -13,6 +13,7 @@ public abstract class Vehicle implements Llogable {
         this.marca = marca;
         this.model = model;
         this.preuBase = preuBase;
+        this.dataAddicio = Instant.now();
         try {
             this.motor = motor;
         } catch (Exception e) {

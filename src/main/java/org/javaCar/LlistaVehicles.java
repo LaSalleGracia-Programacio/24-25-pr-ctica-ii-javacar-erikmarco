@@ -1,15 +1,94 @@
 package org.javaCar;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Comparator;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.time.LocalDate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class LlistaVehicles implements ErrorChecker {
     public static List<Vehicle> vehicles = new ArrayList<>();
 
+    public static void init(String path) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",", 12); // We expect 12 parts (vehicleType + 11 fields)
+                if (parts.length < 12) continue;
+
+                String tipus = parts[0];
+                String matricula = parts[1];
+                boolean llogat = Boolean.parseBoolean(parts[2]);
+                int diesLlogats = Integer.parseInt(parts[3]);
+                String dataLloguer = parts[4]; // we could use this to set a date, but not used in vehicle creation
+                String marca = parts[5];
+                String model = parts[6];
+
+                // Parse Motor
+                Pattern motorPattern = Pattern.compile("potencia = (\\d+), tipus = ([a-z])");
+                Matcher motorMatcher = motorPattern.matcher(parts[7]);
+                int potencia = 0;
+                String tipusCombustible = "";
+                if (motorMatcher.find()) {
+                    potencia = Integer.parseInt(motorMatcher.group(1));
+                    tipusCombustible = motorMatcher.group(2);
+                }
+                Motor motor = new Motor(tipusCombustible, potencia);
+
+                // Parse Rodes
+                Pattern rodaPattern = Pattern.compile("marca = ([^,]+), diametre = (\\d+)");
+                Matcher rodaMatcher = rodaPattern.matcher(parts[8]);
+                List<Roda> rodesList = new ArrayList<>();
+                while (rodaMatcher.find()) {
+                    String marcaRoda = rodaMatcher.group(1);
+                    int diametreRoda = Integer.parseInt(rodaMatcher.group(2));
+                    rodesList.add(new Roda(marcaRoda, diametreRoda));
+                }
+                Roda[] rodes = rodesList.toArray(new Roda[0]);
+
+                DistintiusAmbientals distintiu = null;
+                try {
+                    distintiu = DistintiusAmbientals.valueOf(parts[9]);
+                } catch (Exception ignored) {
+                    distintiu = DistintiusAmbientals.NULL;
+                }
+
+                double preuBase = Double.parseDouble(parts[10]);
+
+                Vehicle vehicle = null;
+                switch (tipus) {
+                    case "Cotxe" -> vehicle = new Cotxe(matricula, marca, model, preuBase, 4, motor, rodes);
+                    case "Moto" -> vehicle = new Moto(matricula, marca, model, preuBase, 125, motor, rodes);
+                    case "Furgoneta" -> vehicle = new Furgoneta(matricula, marca, model, preuBase, 1000, motor, rodes);
+                }
+
+                if (vehicle != null) {
+                    vehicle.assignarDistintiuAmbiental(vehicle.getMotorPure());
+                    vehicle.setDataAddicio(Instant.from(LocalDate.parse(dataLloguer.split("T")[0]))); // Set only date part
+                    vehicles.add(vehicle);
+                }
+            }
+            System.out.println("Vehicles carregats correctament des del fitxer.");
+        } catch (Exception e) {
+            System.out.println("Error en carregar els vehicles: " + e.getMessage());
+            ErrorLogger.logError(e);
+        }
+    }
+
+
+
     public static void ordenarVehicles() {
-        int opcio = ErrorChecker.checkIntPos(4);
+        System.out.println("""
+                1. Preu Base
+                2. Potencia
+                3. Distintiu Ambiental
+                """);
+        int opcio = ErrorChecker.checkIntPos(3);
         System.out.print("Ordenant vehicles per");
         boolean asc = ErrorChecker.checkIntPos(2) == 1;
         Comparator<Vehicle> ordenar = Comparator.comparing(Vehicle::getMatricula);
@@ -23,10 +102,6 @@ public class LlistaVehicles implements ErrorChecker {
                 ordenar = Comparator.comparingInt(Vehicle::getPotencia).thenComparing(Vehicle::getMatricula);
             }
             case 3 -> {
-                System.out.print(" distintiu ambiental");
-                ordenar = Comparator.comparing(Vehicle::getDistintiuAmbiental).thenComparing(Vehicle::getMatricula);
-            }
-            case 4 -> {
                 System.out.print(" distintiu ambiental");
 
                 List<DistintiusAmbientals> sortOrder = Arrays.asList(
@@ -49,12 +124,19 @@ public class LlistaVehicles implements ErrorChecker {
         }
     }
     public static void mostrarLlista() {
+        init("vehiclesLlogats.csv");
         for (Vehicle v : vehicles) {
             System.out.println(v.toString());
         }
     }
 
     public static void afegirVehicle() {
+        System.out.println("""
+                Tipus de vehicle:
+                1 - Cotxe
+                2 - Moto
+                3 - Furgoneta
+                """);
         int opcio = ErrorChecker.checkIntPos(3);
         switch (opcio) {
             case 1 -> {
@@ -183,7 +265,8 @@ public class LlistaVehicles implements ErrorChecker {
         byte opt = 1;
         switch (opt) {
             case 1 -> {
-                boolean minMax = ErrorChecker.checkIntPos(1) == 1;
+                System.out.println("Minima: 1. Maxima: 2.");
+                boolean minMax = ErrorChecker.checkIntPos(2) == 1;
                 int potencia = ErrorChecker.checkIntPos(Integer.MAX_VALUE);
                 if (minMax) {
                     for (Vehicle v : vehicles) {

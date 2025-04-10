@@ -60,5 +60,11 @@ public class Cotxe extends Vehicle implements Llogable{
     public double calcularPreuCotxe(int dies, double preuBase) {
         return preuBase*dies;
     }
+
+    @Override
+    public String toString() {
+        return "Cotxe{matricula=" + matricula + ", marca=" + marca + ", model=" + model + ", preuBase=" + getPreuBase()  + ", numPlaces=" + numPlaces + ", motor=" + getMotor() + ", rodes=" + getRodes() + ", distintiuAmbiental=" + getDistintiuAmbiental() +
+                '}';
+    }
 }
 

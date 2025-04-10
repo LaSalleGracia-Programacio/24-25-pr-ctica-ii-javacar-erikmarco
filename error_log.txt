@@ -1,5 +1,22 @@
-org.javaCar.InvalidMotorTypeException: Tipus de motor invalid.
-	at org.javaCar.Vehicle.assignarDistintiuAmbiental(Vehicle.java:212)
-	at org.javaCar.LlistaVehicles.afegirVehicle(LlistaVehicles.java:101)
-	at org.javaCar.Main.main(Main.java:138)
+java.lang.NumberFormatException: For input string: "diametre = 20}"
+	at java.base/jdk.internal.math.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:2054)
+	at java.base/jdk.internal.math.FloatingDecimal.parseDouble(FloatingDecimal.java:110)
+	at java.base/java.lang.Double.parseDouble(Double.java:944)
+	at org.javaCar.LlistaVehicles.init(LlistaVehicles.java:61)
+	at org.javaCar.Main.main(Main.java:11)
+
+java.lang.NumberFormatException: For input string: "diametre = 20}"
+	at java.base/jdk.internal.math.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:2054)
+	at java.base/jdk.internal.math.FloatingDecimal.parseDouble(FloatingDecimal.java:110)
+	at java.base/java.lang.Double.parseDouble(Double.java:944)
+	at org.javaCar.LlistaVehicles.init(LlistaVehicles.java:61)
+	at org.javaCar.Main.main(Main.java:11)
+
+java.lang.NumberFormatException: For input string: "diametre = 20}"
+	at java.base/jdk.internal.math.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:2054)
+	at java.base/jdk.internal.math.FloatingDecimal.parseDouble(FloatingDecimal.java:110)
+	at java.base/java.lang.Double.parseDouble(Double.java:944)
+	at org.javaCar.LlistaVehicles.init(LlistaVehicles.java:61)
+	at org.javaCar.LlistaVehicles.mostrarLlista(LlistaVehicles.java:127)
+	at org.javaCar.Main.main(Main.java:71)
 

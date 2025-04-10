@@ -33,13 +33,13 @@ public class AdministradorLloguer extends LlistaVehicles {
         try (PrintWriter writer = new PrintWriter(new FileWriter(fitxer, false))) {
             for (Vehicle v : LlistaVehicles.vehicles) {
                 String matricula = v.getMatricula();
-                int diesLlogats = vehiclesLlogats.getOrDefault(matricula, 0); // Get rental days
-                String dataLloguer = diesLlogats > 0 ? LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) : v.getDataAddicio().toString();
+                int diesLlogats = vehiclesLlogats.getOrDefault(matricula, 0);
+                String dataLloguer = diesLlogats > 0
+                        ? LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                        : v.getDataAddicio().toString();
 
-                // Get the type of the vehicle (subclass name)
-                String vehicleType = v.getClass().getSimpleName(); // "Cotxe", "Moto", or "Furgoneta"
+                String vehicleType = v.getClass().getSimpleName();
 
-                // Write vehicle data to the CSV
                 writer.println(vehicleType + "," + matricula + "," + (diesLlogats > 0) + "," + diesLlogats + "," + dataLloguer + "," +
                         v.getMarca() + "," + v.getModel() + "," + v.getMotor() + "," + v.getRodes() + "," +
                         v.getDistintiuAmbiental() + "," + v.getPreuBase());
@@ -85,7 +85,7 @@ public class AdministradorLloguer extends LlistaVehicles {
         int tipus = ErrorChecker.checkIntPos(3);
 
         System.out.print("Introdueix el nombre de dies de lloguer: ");
-        int dies = ErrorChecker.checkIntPos(365); // máx. 1 any
+        int dies = ErrorChecker.checkIntPos(Integer.MAX_VALUE); // máx. 1 any
 
         String nomClasse = switch (tipus) {
             case 1 -> "Cotxe";

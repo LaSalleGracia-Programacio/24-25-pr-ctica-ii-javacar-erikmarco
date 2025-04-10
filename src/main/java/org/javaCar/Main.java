@@ -4,9 +4,7 @@ import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Main {
-
     public static final DecimalFormat euros = new DecimalFormat("0.00 €");
-
     public static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         boolean sortir = false;
@@ -50,21 +48,18 @@ public class Main {
                                 System.out.println("3. Eliminar vehicle");
                                 System.out.println("4. Consultar llista de vehicles");
                                 System.out.println("5. Gestió d’usuaris");
-                                System.out.println("5. Consultar balanç de beneficis");
-                                System.out.println("6. Tancar sessió");
+                                System.out.println("6. Consultar balanç de beneficis");
+                                System.out.println("7. Tancar sessió");
                                 System.out.print("Opció: ");
-                                int opcioAdmin = ErrorChecker.checkIntPos(6);
+                                int opcioAdmin = ErrorChecker.checkIntPos(7);
 
                                 switch (opcioAdmin) {
                                     case 1:
                                         LlistaVehicles.afegirVehicle();
                                     break;
                                     case 2:
-
                                         LlistaVehicles.modificarVehicle();
-                                        break;
-
-
+                                    break;
                                     case 3:
                                         System.out.print("Introdueix la matrícula del vehicle a eliminar: ");
                                         String matriculaEliminar = scanner.nextLine();
@@ -72,7 +67,8 @@ public class Main {
                                         System.out.println("Vehicle eliminat si existia.");
                                     break;
                                     case 4:
-                                        System.out.println("");
+                                        System.out.println("Consultant llista de vehicles...");
+                                        LlistaVehicles.mostrarLlista();
                                     break;
                                     case 5:
                                         System.out.println("Benvingut al gestor d'usuaris");
@@ -80,10 +76,18 @@ public class Main {
                                         System.out.println("2. Eliminar usuari");
                                         System.out.print("Opció: ");
                                         boolean opcioGestor = ErrorChecker.checkIntPos(2) == 1;
-                                        if (!opcioGestor) System.out.println("Eliminar usuari");
-                                        else System.out.println("Veure llista d'usuaris");
+                                        if (!opcioGestor) {
+                                            System.out.println("Introdueix DNI");
+                                            String dni = scanner.nextLine();
+                                            GestorUsuaris.eliminarUsuari(dni);
+                                        }
+                                        else GestorUsuaris.mostrarUsuaris();
                                     break;
                                     case 6:
+                                        System.out.println("Consultant balanç de beneficis");
+                                        System.out.println(euros.format(AdministradorLloguer.calcularIngressosTotals(LlistaVehicles.vehicles, Integer.MAX_VALUE)));
+                                    break;
+                                    case 7:
                                         System.out.println("Sessió tancada.");
                                         tancarSessio = true;
                                     break;
@@ -96,10 +100,9 @@ public class Main {
                                     System.out.println("--- MENÚ USUARI ---");
                                     System.out.println("1. Buscar vehicles disponibles per llogar");
                                     System.out.println("2. Llogar un vehicle");
-                                    System.out.println("3. Mirar historial de lloguers");
-                                    System.out.println("4. Tancar sessió");
+                                    System.out.println("3. Tancar sessió");
                                     System.out.print("Opció: ");
-                                    int opcioUsuari = ErrorChecker.checkIntPos(3);
+                                    int opcioUsuari = ErrorChecker.checkIntPos(4);
 
                                     switch (opcioUsuari) {
                                         case 1:
@@ -137,6 +140,10 @@ public class Main {
                                         break;
                                         case 2:
                                             System.out.println("Funció per llogar vehicle");
+                                            AdministradorLloguer.init();
+                                            AdministradorLloguer.mostrarLlista();
+                                            AdministradorLloguer.llogarVehicle();
+                                            AdministradorLloguer.generarFitxer("vehiclesLlogats.csv");
                                         break;
                                         case 3:
                                             System.out.println("Sessió tancada.");

@@ -38,13 +38,13 @@ public class Furgoneta extends Vehicle implements Llogable{
 
     /**
      * Constructor amb paràmetres d'una furgoneta
-     * @param matricula
-     * @param marca
-     * @param model
-     * @param preuBase
-     * @param capacitatCarga
-     * @param motor
-     * @param rodes
+     * @param matricula la matricula
+     * @param marca la marca
+     * @param model el model
+     * @param preuBase el preu base
+     * @param capacitatCarga la capacitat de carrega
+     * @param motor el motor
+     * @param rodes les rodes
      */
     public Furgoneta(String matricula, String marca, String model, double preuBase, int capacitatCarga, Motor motor, Roda[] rodes){
         setMatricula(matricula);
@@ -62,6 +62,16 @@ public class Furgoneta extends Vehicle implements Llogable{
      */
     public Furgoneta() {
         this(null, null, null, 0, 0, new Motor(), new Roda[0]);
+    }
+
+    @Override
+    public String toString() {
+        return "Furgoneta{" +
+                "capacitatCarga=" + capacitatCarga +
+                ", matricula='" + matricula + '\'' +
+                ", marca='" + marca + '\'' +
+                ", model='" + model + '\'' +
+                '}';
     }
 }
 
