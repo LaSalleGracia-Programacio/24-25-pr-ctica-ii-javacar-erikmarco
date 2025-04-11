@@ -14,68 +14,40 @@ import java.util.regex.Pattern;
 public class LlistaVehicles implements ErrorChecker {
     public static List<Vehicle> vehicles = new ArrayList<>();
 
-    public static void init(String path) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+    public static void init(String filePath) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",", 12); // We expect 12 parts (vehicleType + 11 fields)
-                if (parts.length < 12) continue;
-
-                String tipus = parts[0];
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                String vehicleType = parts[0];
                 String matricula = parts[1];
-                boolean llogat = Boolean.parseBoolean(parts[2]);
+                boolean esLlogat = Boolean.parseBoolean(parts[2]);
                 int diesLlogats = Integer.parseInt(parts[3]);
-                String dataLloguer = parts[4]; // we could use this to set a date, but not used in vehicle creation
+                Instant dataAddicio = Instant.parse(parts[4]);
                 String marca = parts[5];
                 String model = parts[6];
+                int potencia = Integer.parseInt(parts[7]);
+                String tipusMotor = parts[8];
+                String marcaRoda = parts[9];
+                int diametreRoda = Integer.parseInt(parts[10]);
+                DistintiusAmbientals distintiuAmbiental = DistintiusAmbientals.valueOf(parts[11]);
+                double preuBase = Double.parseDouble(parts[12]);
 
-                // Parse Motor
-                Pattern motorPattern = Pattern.compile("potencia = (\\d+), tipus = ([a-z])");
-                Matcher motorMatcher = motorPattern.matcher(parts[7]);
-                int potencia = 0;
-                String tipusCombustible = "";
-                if (motorMatcher.find()) {
-                    potencia = Integer.parseInt(motorMatcher.group(1));
-                    tipusCombustible = motorMatcher.group(2);
-                }
-                Motor motor = new Motor(tipusCombustible, potencia);
+                Motor motor = new Motor(tipusMotor, potencia);
+                Roda rodes = new Roda(); // Assuming 4 wheels for simplicity
 
-                // Parse Rodes
-                Pattern rodaPattern = Pattern.compile("marca = ([^,]+), diametre = (\\d+)");
-                Matcher rodaMatcher = rodaPattern.matcher(parts[8]);
-                List<Roda> rodesList = new ArrayList<>();
-                while (rodaMatcher.find()) {
-                    String marcaRoda = rodaMatcher.group(1);
-                    int diametreRoda = Integer.parseInt(rodaMatcher.group(2));
-                    rodesList.add(new Roda(marcaRoda, diametreRoda));
-                }
-                Roda[] rodes = rodesList.toArray(new Roda[0]);
-
-                DistintiusAmbientals distintiu = null;
-                try {
-                    distintiu = DistintiusAmbientals.valueOf(parts[9]);
-                } catch (Exception ignored) {
-                    distintiu = DistintiusAmbientals.NULL;
+                switch (vehicleType) {
+                    case "Cotxe" -> vehicles.add(new Cotxe(matricula, marca, model, preuBase, diesLlogats, motor, rodes));
+                    case "Moto" -> vehicles.add(new Moto(matricula, marca, model, preuBase, diesLlogats, motor, rodes));
+                    case "Furgoneta" -> vehicles.add(new Furgoneta(matricula, marca, model, preuBase, diesLlogats, motor, rodes));
                 }
 
-                double preuBase = Double.parseDouble(parts[10]);
-
-                Vehicle vehicle = null;
-                switch (tipus) {
-                    case "Cotxe" -> vehicle = new Cotxe(matricula, marca, model, preuBase, 4, motor, rodes);
-                    case "Moto" -> vehicle = new Moto(matricula, marca, model, preuBase, 125, motor, rodes);
-                    case "Furgoneta" -> vehicle = new Furgoneta(matricula, marca, model, preuBase, 1000, motor, rodes);
-                }
-
-                if (vehicle != null) {
-                    vehicle.assignarDistintiuAmbiental(vehicle.getMotorPure());
-                    vehicle.setDataAddicio(Instant.from(LocalDate.parse(dataLloguer.split("T")[0]))); // Set only date part
-                    vehicles.add(vehicle);
-                }
+                Vehicle vehicle = vehicles.get(vehicles.size() - 1);
+                vehicle.setDataAddicio(dataAddicio);
+                vehicle.assignarDistintiuAmbiental(motor);
             }
-            System.out.println("Vehicles carregats correctament des del fitxer.");
         } catch (Exception e) {
-            System.out.println("Error en carregar els vehicles: " + e.getMessage());
+            System.out.println("Error llegint el fitxer: " + e.getMessage());
             ErrorLogger.logError(e);
         }
     }
@@ -123,7 +95,7 @@ public class LlistaVehicles implements ErrorChecker {
             vehicles.sort(ordenar);
         }
     }
-    public static void mostrarLlista() {
+    public static void mostrarLlista() {;
         init("vehiclesLlogats.csv");
         for (Vehicle v : vehicles) {
             System.out.println(v.toString());
@@ -149,36 +121,18 @@ public class LlistaVehicles implements ErrorChecker {
                 Motor motor = new Motor(combustible, potencia);
                 System.out.print("Introdueix el numero de persones: ");
                 int persones = ErrorChecker.checkIntPos(9);
-                System.out.print("Introdueix el numero de rodes: ");
-                int nRodes = ErrorChecker.checkIntPos(10);
-                Roda[] rodes = new Roda[nRodes];
-                System.out.println("Són totes les rodes iguals?");
-                boolean rodesIguals = ErrorChecker.checkIntPos(2) == 1;
-                if (rodesIguals) {
-                    System.out.println("Introdueix la marca de roda");
-                    String marca = scan.nextLine();
-                    System.out.println("Introdueix el diametre de la roda");
-                    int diametre = ErrorChecker.checkIntPos(Byte.MAX_VALUE);
-                    for (int i = 0; i < rodes.length; i++) {
-                        rodes[i] = new Roda(marca, diametre);
-                    }
-                } else {
-                    for (int i = 0; i < rodes.length; i++) {
-                        System.out.println("Marca de la roda " + (i + 1) + ": ");
-                        String marca = scan.nextLine();
-                        System.out.println("Diàmetre de la roda " + (i + 1) + ": ");
-                        int diametre = ErrorChecker.checkIntPos(Byte.MAX_VALUE);
-                        rodes[i] = new Roda(marca, diametre);
-                    }
-
-                }
+                System.out.println("Introdueix la marca de les rodes: ");
+                String marcaRoda = scan.nextLine();
+                System.out.println("Introdueix el diametre de les rodes: ");
+                int diametre = ErrorChecker.checkIntPos(Byte.MAX_VALUE);
+                Roda roda = new Roda(marcaRoda, diametre);
                 System.out.print("Introdueix el preu base: ");
                 double preuBase = ErrorChecker.checkDoublePos(Double.MAX_VALUE);
                 System.out.print("Introdueix la marca: ");
                 String marca = scan.nextLine();
                 System.out.println("Introdueix el model: ");
                 String model = scan.nextLine();
-                vehicles.add(new Cotxe(matricula, marca, model, preuBase, persones, motor, rodes));
+                vehicles.add(new Cotxe(matricula, marca, model, preuBase, persones, motor, roda));
                 try {
                     vehicles.get(vehicles.size()-1).assignarDistintiuAmbiental(vehicles.get(vehicles.size()-1).getMotorPure());
                 } catch (Exception e) {
@@ -187,33 +141,24 @@ public class LlistaVehicles implements ErrorChecker {
                 }
             }
             case 2 -> {
+                System.out.println("matricula");
                 String matricula = scan.nextLine();
+                System.out.println("potencia");
                 int potencia = ErrorChecker.checkIntPos(Integer.MAX_VALUE);
+                System.out.println("tipus motor");
                 String combustible = scan.nextLine();
                 Motor motor = new Motor(combustible, potencia);
+                System.out.println("cilindrada");
                 int cilindrada = ErrorChecker.checkIntPos(2000);
-                int nRodes = ErrorChecker.checkIntPos(10);
-                Roda[] rodes = new Roda[nRodes];
-                boolean rodesIguals = ErrorChecker.checkIntPos(2) == 1;
-                if (rodesIguals) {
-                    String marca = scan.nextLine();
-                    int diametre = ErrorChecker.checkIntPos(Byte.MAX_VALUE);
-                    for (Roda roda : rodes) {
-                        roda.setMarca(marca);
-                        roda.setDiametre(diametre);
-                    }
-                } else {
-                    for (Roda roda : rodes) {
-                        String marca = scan.nextLine();
-                        int diametre = ErrorChecker.checkIntPos(Byte.MAX_VALUE);
-                        roda.setMarca(marca);
-                        roda.setDiametre(diametre);
-                    }
-                }
+                System.out.println("mdoe roda");
+                String rodaMod = scan.nextLine();
+                System.out.println("diametre");
+                int diametre = ErrorChecker.checkIntPos(Byte.MAX_VALUE);
+                Roda roda = new Roda(rodaMod, diametre);
                 double preuBase = ErrorChecker.checkDoublePos(Double.MAX_VALUE);
                 String marca = scan.nextLine();
                 String model = scan.nextLine();
-                vehicles.add(new Moto(matricula, marca, model, preuBase, cilindrada, motor, rodes));
+                vehicles.add(new Moto(matricula, marca, model, preuBase, cilindrada, motor, roda));
                 try {
                     vehicles.get(vehicles.size()-1).assignarDistintiuAmbiental(vehicles.get(vehicles.size()-1).getMotorPure());
                 } catch (Exception e) {
@@ -227,24 +172,11 @@ public class LlistaVehicles implements ErrorChecker {
                 String combustible = scan.nextLine();
                 Motor motor = new Motor(combustible, potencia);
                 int capacitatCarrega = ErrorChecker.checkIntPos(3500);
-                int nRodes = ErrorChecker.checkIntPos(10);
-                Roda[] rodes = new Roda[nRodes];
-                boolean rodesIguals = ErrorChecker.checkIntPos(2) == 1;
-                if (rodesIguals) {
-                    String marca = scan.nextLine();
-                    int diametre = ErrorChecker.checkIntPos(Byte.MAX_VALUE);
-                    for (Roda roda : rodes) {
-                        roda.setMarca(marca);
-                        roda.setDiametre(diametre);
-                    }
-                } else {
-                    for (Roda roda : rodes) {
-                        String marca = scan.nextLine();
-                        int diametre = ErrorChecker.checkIntPos(Byte.MAX_VALUE);
-                        roda.setMarca(marca);
-                        roda.setDiametre(diametre);
-                    }
-                }
+                System.out.println("marca rodes");
+                String marcaRoda = scan.nextLine();
+                System.out.println("diametre rodes");
+                int diametre = ErrorChecker.checkIntPos(Byte.MAX_VALUE);
+                Roda rodes = new Roda(marcaRoda, diametre);
                 double preuBase = ErrorChecker.checkDoublePos(Double.MAX_VALUE);
                 String marca = scan.nextLine();
                 String model = scan.nextLine();

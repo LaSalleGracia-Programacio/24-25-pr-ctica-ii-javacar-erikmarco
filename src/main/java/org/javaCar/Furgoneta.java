@@ -46,7 +46,7 @@ public class Furgoneta extends Vehicle implements Llogable{
      * @param motor el motor
      * @param rodes les rodes
      */
-    public Furgoneta(String matricula, String marca, String model, double preuBase, int capacitatCarga, Motor motor, Roda[] rodes){
+    public Furgoneta(String matricula, String marca, String model, double preuBase, int capacitatCarga, Motor motor, Roda rodes){
         setMatricula(matricula);
         setMarca(marca);
         setModel(model);
@@ -61,7 +61,7 @@ public class Furgoneta extends Vehicle implements Llogable{
      * Constructor per defecte d'una furgoneta
      */
     public Furgoneta() {
-        this(null, null, null, 0, 0, new Motor(), new Roda[0]);
+        this(null, null, null, 0, 0, new Motor(), new Roda());
     }
 
     @Override

@@ -14,7 +14,7 @@ public class LlogableGestorTest {
     @Test
     public void testLlogableImplementacio() {
         // Create a sample vehicle (Cotxe) and check if it implements Llogable
-        Vehicle cotxe = new Cotxe("1234ABC", "Toyota", "Corolla", 30, 5, new Motor("Gasolina", 120), new Roda[]{new Roda("Michelin", 17), new Roda("Michelin", 17), new Roda("Michelin", 17), new Roda("Michelin", 17)});
+        Vehicle cotxe = new Cotxe("1234ABC", "Toyota", "Corolla", 30, 5, new Motor("Gasolina", 120), new Roda("Michelin", 17));
         assertTrue(cotxe instanceof Llogable); // Ensure Cotxe is Llogable
     }
 
@@ -23,8 +23,8 @@ public class LlogableGestorTest {
         // Create some vehicles
         List<Vehicle> vehicles = new ArrayList<>();
 
-        Vehicle cotxe = new Cotxe("1234ABC", "Toyota", "Corolla", 30, 5, new Motor("Gasolina", 120), new Roda[]{new Roda("Michelin", 17), new Roda("Michelin", 17), new Roda("Michelin", 17), new Roda("Michelin", 17)});
-        Vehicle moto = new Moto("5678DEF", "Yamaha", "R6", 25, 600, new Motor("Gasolina", 80), new Roda[]{new Roda("Pirelli", 16), new Roda("Pirelli", 16)});
+        Vehicle cotxe = new Cotxe("1234ABC", "Toyota", "Corolla", 30, 5, new Motor("Gasolina", 120), new Roda("Michelin", 17));
+        Vehicle moto = new Moto("5678DEF", "Yamaha", "R6", 25, 600, new Motor("Gasolina", 80), new Roda("Pirelli", 16));
 
         // Add vehicles to the list
         vehicles.add(cotxe);

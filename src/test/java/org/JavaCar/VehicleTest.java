@@ -22,21 +22,21 @@ public class VehicleTest {
         assertEquals("Focus", vehicle.getModel());
         assertEquals(28, vehicle.getPreuBase(), 0.01);
         assertNull(vehicle.getMotorPure());
-        assertNull(vehicle.getRodes());
+        assertNull(vehicle.getRoda());
     }
 
     @Test
     public void testCreacioVehicleAmbMotorIRodes() {
         Motor motor = new Motor("Gasolina", 120);
-        Roda[] rodes = {new Roda("Michelin", 17), new Roda("Michelin", 17), new Roda("Michelin", 17), new Roda("Michelin", 17)};
-        Vehicle vehicle = new Cotxe("1234ABC", "Toyota", "Corolla", 30, 5, motor, rodes);
+        Roda roda = new Roda("Michelin", 17);
+        Vehicle vehicle = new Cotxe("1234ABC", "Toyota", "Corolla", 30, 5, motor, roda);
 
         assertEquals("1234ABC", vehicle.getMatricula());
         assertEquals("Toyota", vehicle.getMarca());
         assertEquals("Corolla", vehicle.getModel());
         assertEquals(30, vehicle.getPreuBase(), 0.01);
         assertEquals(motor, vehicle.getMotorPure());
-        assertArrayEquals(rodes, vehicle.getRodesMatriu());
+        assertEquals(roda, vehicle.getRoda());
     }
 
     @Test

@@ -8,7 +8,7 @@ public abstract class Vehicle implements Llogable {
     Random rand = new Random();
 
     // Constructor to initialize Vehicle with matricula, marca, model, preuBase, motor, and rodes
-    public Vehicle(String matricula, String marca, String model, double preuBase, Motor motor, Roda[] rodes) {
+    public Vehicle(String matricula, String marca, String model, double preuBase, Motor motor, Roda roda) {
         this.matricula = matricula;
         this.marca = marca;
         this.model = model;
@@ -20,9 +20,9 @@ public abstract class Vehicle implements Llogable {
             motor = null;
         }
         try {
-            this.rodes = rodes;
+            this.roda = roda;
         } catch (Exception e) {
-            rodes = null;
+            this.roda = null;
         }
     }
 
@@ -55,7 +55,7 @@ public abstract class Vehicle implements Llogable {
     protected String model;
     private double preuBase;
     private Motor motor;
-    private Roda[] rodes;
+    private Roda roda;
     private DistintiusAmbientals distintiuAmbiental;
     private Instant dataAddicio;
 
@@ -120,31 +120,12 @@ public abstract class Vehicle implements Llogable {
         this.motor = motor;
     }
 
-    public Roda[] getRodesMatriu() {
-        return rodes;
+    public Roda getRodaPure() {
+        return roda;
     }
 
-    public String getRodes() {
-        if (rodes == null || rodes.length == 0) {
-            return null; // Return empty braces if no wheels are set
-        }
-
-        sb.setLength(0); // Reset the StringBuilder
-        sb.append("{");
-
-        for (int i = 0; i < rodes.length; i++) {
-            if (rodes[i] != null) {
-                sb.append("roda ").append(i).append(": ").append(rodes[i].toString());
-            } else {
-                sb.append("roda ").append(i).append(": NULL");
-            }
-
-            if (i != rodes.length - 1) {
-                sb.append(", ");
-            }
-        }
-        sb.append("}");
-        return sb.toString();
+    public String getRoda() {
+        return roda.toString();
     }
 
     // Method to assign the environmental badge
@@ -205,7 +186,7 @@ public abstract class Vehicle implements Llogable {
 
     }
 
-    protected void setRodes(Roda[] rodes) {
-        this.rodes = rodes;
+    protected void setRodes(Roda roda) {
+        this.roda = roda;
     }
 }

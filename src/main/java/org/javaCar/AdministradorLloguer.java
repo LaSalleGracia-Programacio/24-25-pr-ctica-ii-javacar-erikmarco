@@ -41,7 +41,7 @@ public class AdministradorLloguer extends LlistaVehicles {
                 String vehicleType = v.getClass().getSimpleName();
 
                 writer.println(vehicleType + "," + matricula + "," + (diesLlogats > 0) + "," + diesLlogats + "," + dataLloguer + "," +
-                        v.getMarca() + "," + v.getModel() + "," + v.getMotor() + "," + v.getRodes() + "," +
+                        v.getMarca() + "," + v.getModel() + "," + v.getMotor() + "," + v.getRoda() + "," +
                         v.getDistintiuAmbiental() + "," + v.getPreuBase());
             }
             System.out.println("Llista de vehicles llogats actualitzada correctament.");

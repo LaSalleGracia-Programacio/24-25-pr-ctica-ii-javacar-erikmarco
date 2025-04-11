@@ -32,11 +32,11 @@ public class Cotxe extends Vehicle implements Llogable{
      * @param motor
      * @param rodes
      */
-    public Cotxe(String matricula, String marca, String model, double preuBase, int places, Motor motor, Roda[] rodes) {
-        super(matricula, marca, model, preuBase, motor, rodes);
+    public Cotxe(String matricula, String marca, String model, double preuBase, int places, Motor motor, Roda roda) {
+        super(matricula, marca, model, preuBase, motor, roda);
         this.numPlaces = places;
         this.setMotor(motor); // motor can be null
-        this.setRodes(rodes); // rodes can be null
+        this.setRodes(roda); // rodes can be null
     }
     public Cotxe(String matricula, String marca, String model, double preuBase, int numPlaces) {
         super(matricula, marca, model, preuBase);
@@ -63,7 +63,7 @@ public class Cotxe extends Vehicle implements Llogable{
 
     @Override
     public String toString() {
-        return "Cotxe{matricula=" + matricula + ", marca=" + marca + ", model=" + model + ", preuBase=" + getPreuBase()  + ", numPlaces=" + numPlaces + ", motor=" + getMotor() + ", rodes=" + getRodes() + ", distintiuAmbiental=" + getDistintiuAmbiental() +
+        return "Cotxe{matricula=" + matricula + ", marca=" + marca + ", model=" + model + ", preuBase=" + getPreuBase()  + ", numPlaces=" + numPlaces + ", motor=" + getMotor() + ", rodes=" + getRoda() + ", distintiuAmbiental=" + getDistintiuAmbiental() +
                 '}';
     }
 }
