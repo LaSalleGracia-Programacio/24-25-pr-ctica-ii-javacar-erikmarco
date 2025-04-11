@@ -89,6 +89,10 @@ public class Motor {
        }
        this.potencia = potencia;
     }
+    public Motor (char tipus, int potencia) {
+        this.tipus = tipus;
+        this.potencia = potencia;
+    }
 
     /**
      * Constructor per defecte del motor.

@@ -41,7 +41,30 @@ public class AdministradorLloguer extends LlistaVehicles {
                 String vehicleType = v.getClass().getSimpleName();
 
                 writer.println(vehicleType + "," + matricula + "," + (diesLlogats > 0) + "," + diesLlogats + "," + dataLloguer + "," +
-                        v.getMarca() + "," + v.getModel() + "," + v.getMotor() + "," + v.getRoda() + "," +
+                        v.getMarca() + "," + v.getModel() + "," + v.getMotorPure().getPotencia() + "," + v.getMotorPure().getTipus() + "," + v.getRodaPure().getMarca() + "," + v.getRodaPure().getDiametre() + "," +
+                        v.getDistintiuAmbiental() + "," + v.getPreuBase());
+            }
+            System.out.println("Llista de vehicles llogats actualitzada correctament.");
+        } catch (IOException ioException) {
+            System.out.println("Error en l'escriptura al fitxer de vehicles llogats: " + ioException.getMessage());
+            ErrorLogger.logError(ioException);
+            System.out.println("S'ha enviat l'error al fitxer de logging d'errors.");
+        }
+    }
+
+    public static void generarFitxerAppend(String fitxer) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(fitxer, true))) {
+            for (Vehicle v : LlistaVehicles.vehicles) {
+                String matricula = v.getMatricula();
+                int diesLlogats = vehiclesLlogats.getOrDefault(matricula, 0);
+                String dataLloguer = diesLlogats > 0
+                        ? LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                        : v.getDataAddicio().toString();
+
+                String vehicleType = v.getClass().getSimpleName();
+
+                writer.println(vehicleType + "," + matricula + "," + (diesLlogats > 0) + "," + diesLlogats + "," + dataLloguer + "," +
+                        v.getMarca() + "," + v.getModel() + "," + v.getMotorPure().getPotencia() + "," + v.getMotorPure().getTipus() + "," + v.getRodaPure().getMarca() + "," + v.getRodaPure().getDiametre() + "," +
                         v.getDistintiuAmbiental() + "," + v.getPreuBase());
             }
             System.out.println("Llista de vehicles llogats actualitzada correctament.");

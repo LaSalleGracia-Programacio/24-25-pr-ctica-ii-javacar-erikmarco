@@ -66,12 +66,8 @@ public class Furgoneta extends Vehicle implements Llogable{
 
     @Override
     public String toString() {
-        return "Furgoneta{" +
-                "capacitatCarga=" + capacitatCarga +
-                ", matricula='" + matricula + '\'' +
-                ", marca='" + marca + '\'' +
-                ", model='" + model + '\'' +
-                '}';
+        return "Moto{matricula=" + matricula + ", marca=" + marca + ", model=" + model + ", preuBase=" + getPreuBase()  + ", capacitatCarga=" + capacitatCarga+ ", motor=" + getMotor() + ", rodes=" + getRoda() + ", distintiuAmbiental=" + getDistintiuAmbiental() +
+        '}';
     }
 }
 

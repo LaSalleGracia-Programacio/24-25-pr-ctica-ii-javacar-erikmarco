@@ -16,3 +16,34 @@ org.javaCar.InvalidMotorTypeException: Tipus de motor invalid.
 	at org.javaCar.LlistaVehicles.mostrarLlista(LlistaVehicles.java:100)
 	at org.javaCar.Main.main(Main.java:71)
 
+java.lang.NumberFormatException: For input string: " diametre = 0}"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+	at java.base/java.lang.Integer.parseInt(Integer.java:588)
+	at java.base/java.lang.Integer.parseInt(Integer.java:685)
+	at org.javaCar.LlistaVehicles.init(LlistaVehicles.java:33)
+	at org.javaCar.LlistaVehicles.mostrarLlista(LlistaVehicles.java:100)
+	at org.javaCar.Main.main(Main.java:71)
+
+java.lang.IllegalArgumentException: No enum constant org.javaCar.DistintiusAmbientals.null
+	at java.base/java.lang.Enum.valueOf(Enum.java:293)
+	at org.javaCar.DistintiusAmbientals.valueOf(DistintiusAmbientals.java:1)
+	at org.javaCar.LlistaVehicles.init(LlistaVehicles.java:34)
+	at org.javaCar.LlistaVehicles.mostrarLlista(LlistaVehicles.java:100)
+	at org.javaCar.Main.main(Main.java:71)
+
+java.lang.NumberFormatException: For input string: " diametre = 10}"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+	at java.base/java.lang.Integer.parseInt(Integer.java:588)
+	at java.base/java.lang.Integer.parseInt(Integer.java:685)
+	at org.javaCar.LlistaVehicles.init(LlistaVehicles.java:33)
+	at org.javaCar.LlistaVehicles.mostrarLlista(LlistaVehicles.java:98)
+	at org.javaCar.Main.main(Main.java:71)
+
+java.lang.NumberFormatException: For input string: " diametre = 10}"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+	at java.base/java.lang.Integer.parseInt(Integer.java:588)
+	at java.base/java.lang.Integer.parseInt(Integer.java:685)
+	at org.javaCar.LlistaVehicles.init(LlistaVehicles.java:33)
+	at org.javaCar.LlistaVehicles.mostrarLlista(LlistaVehicles.java:98)
+	at org.javaCar.Main.main(Main.java:71)
+

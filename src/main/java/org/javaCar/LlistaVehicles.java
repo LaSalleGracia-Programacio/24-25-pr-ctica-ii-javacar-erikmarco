@@ -15,45 +15,45 @@ public class LlistaVehicles implements ErrorChecker {
     public static List<Vehicle> vehicles = new ArrayList<>();
 
     public static void init(String filePath) {
-        vehicles = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
                 String vehicleType = parts[0];
                 String matricula = parts[1];
-                boolean esLlogat = Boolean.parseBoolean(parts[2]);
                 int diesLlogats = Integer.parseInt(parts[3]);
                 Instant dataAddicio = Instant.parse(parts[4]);
                 String marca = parts[5];
                 String model = parts[6];
                 int potencia = Integer.parseInt(parts[7]);
-                String tipusMotor = parts[8];
+                char tipusMotor = parts[8].charAt(0);
                 String marcaRoda = parts[9];
                 int diametreRoda = Integer.parseInt(parts[10]);
-                DistintiusAmbientals distintiuAmbiental = DistintiusAmbientals.valueOf(parts[11]);
                 double preuBase = Double.parseDouble(parts[12]);
+                Motor motor = new Motor(potencia, tipusMotor);
+                Roda rodes = new Roda(marcaRoda, diametreRoda);
 
-                Motor motor = new Motor(tipusMotor, potencia);
-                Roda rodes = new Roda(); // Assuming 4 wheels for simplicity
+                boolean exists = vehicles.stream().anyMatch(v -> v.getMatricula().equalsIgnoreCase(matricula));
+                if (!exists) {
+                    switch (vehicleType) {
+                        case "Cotxe" -> vehicles.add(new Cotxe(matricula, marca, model, preuBase, diesLlogats, motor, rodes));
+                        case "Moto" -> vehicles.add(new Moto(matricula, marca, model, preuBase, diesLlogats, motor, rodes));
+                        case "Furgoneta" -> vehicles.add(new Furgoneta(matricula, marca, model, preuBase, diesLlogats, motor, rodes));
+                    }
 
-                switch (vehicleType) {
-                    case "Cotxe" -> vehicles.add(new Cotxe(matricula, marca, model, preuBase, diesLlogats, motor, rodes));
-                    case "Moto" -> vehicles.add(new Moto(matricula, marca, model, preuBase, diesLlogats, motor, rodes));
-                    case "Furgoneta" -> vehicles.add(new Furgoneta(matricula, marca, model, preuBase, diesLlogats, motor, rodes));
+                    Vehicle vehicle = vehicles.get(vehicles.size() - 1);
+                    vehicle.setDataAddicio(dataAddicio);
+                    vehicle.assignarDistintiuAmbiental(motor);
+                } else {
+                    System.out.println("Vehicle amb matrícula " + matricula + " ja existeix. No s'ha afegit.");
                 }
-
-                Vehicle vehicle = vehicles.get(vehicles.size() - 1);
-                vehicle.setDataAddicio(dataAddicio);
-                vehicle.assignarDistintiuAmbiental(motor);
             }
         } catch (Exception e) {
             System.out.println("Error llegint el fitxer: " + e.getMessage());
             ErrorLogger.logError(e);
         }
+        AdministradorLloguer.generarFitxer("vehiclesLlogats.csv");
     }
-
-
 
     public static void ordenarVehicles() {
         System.out.println("""
@@ -98,7 +98,6 @@ public class LlistaVehicles implements ErrorChecker {
     }
     public static void mostrarLlista() {
         init("vehiclesLlogats.csv");
-        AdministradorLloguer.generarFitxer("vehiclesLlogats.csv");
         for (Vehicle v : vehicles) {
             System.out.println(v.toString());
         }
@@ -221,8 +220,8 @@ public class LlistaVehicles implements ErrorChecker {
 
     public static void filtrarPersones() {
         System.out.println("Filtrar per nombre de places:");
-        System.out.println("1. Igual o més");
-        System.out.println("2. Menys");
+        System.out.println("1. Menys");
+        System.out.println("2. Igual o més");
         boolean minMax = ErrorChecker.checkIntPos(2) == 1;
 
         System.out.print("Introdueix el nombre de places: ");

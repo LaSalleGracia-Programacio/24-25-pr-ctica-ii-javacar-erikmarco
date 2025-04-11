@@ -65,11 +65,7 @@ public class Moto extends Vehicle implements Llogable {
 
     @Override
     public String toString() {
-        return "Moto{" +
-                "cilindrada=" + cilindrada +
-                ", matricula='" + matricula + '\'' +
-                ", marca='" + marca + '\'' +
-                ", model='" + model + '\'' +
-                '}';
+        return "Moto{matricula=" + matricula + ", marca=" + marca + ", model=" + model + ", preuBase=" + getPreuBase()  + ", cilindrada=" + cilindrada+ ", motor=" + getMotor() + ", rodes=" + getRoda() + ", distintiuAmbiental=" + getDistintiuAmbiental() +
+        '}';
     }
 }
