@@ -15,6 +15,7 @@ public class LlistaVehicles implements ErrorChecker {
     public static List<Vehicle> vehicles = new ArrayList<>();
 
     public static void init(String filePath) {
+        vehicles = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -95,8 +96,9 @@ public class LlistaVehicles implements ErrorChecker {
             vehicles.sort(ordenar);
         }
     }
-    public static void mostrarLlista() {;
+    public static void mostrarLlista() {
         init("vehiclesLlogats.csv");
+        AdministradorLloguer.generarFitxer("vehiclesLlogats.csv");
         for (Vehicle v : vehicles) {
             System.out.println(v.toString());
         }
